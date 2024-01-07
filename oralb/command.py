@@ -225,7 +225,6 @@ class DeviceManagerCommand(Command):
             print_err(f"Device with address {obclient.address!r} not found!")
         except Exception as error:
             print_err(f"[bold]{type(error).__name__}: [/] {str(error)}")
-            traceback.print_exc()
         else:
             shell.obclient = obclient
             print_ok(f"Connected to {obclient.address!r}")
