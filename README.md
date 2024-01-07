@@ -34,7 +34,7 @@ To start the CLI just type `oralbcli`.
 The `ble` command can be used to view all Bluetooth devices in the area. Additionally,
 advertisements from brushes will be displayed in detail:
 
-```console
+```bash
 (oralb)> ble discover
 [  Info  ] Scan complete: found 17 devices.
 
@@ -74,7 +74,7 @@ Before we can read data from the device, we have to connect to it.
 > restart the shell and connect again. The *re-connect* mechanism is not
 > fully applicable by now.
 
-```console
+```bash
 (oralb)> dm connect "FF:FF:FF:FF:FF:FF"
 [   Ok   ] Connected to 'FF:FF:FF:FF:FF:FF'
 ```
@@ -86,7 +86,7 @@ paring fails.
 
 In order to read attributes, the device must be active:
 
-```console
+```bash
 (oralb)> dm getchar my_color
 [   Ok   ] Value of 'A0F0FF2B-5047-4D53-8208-4F72616C2D42':
 
@@ -95,7 +95,7 @@ Color(red=0, green=255, blue=61, identifier=0)
 
 is equivalent to
 
-```console
+```bash
 (oralb)> dm getchar FF2B
 [   Ok   ] Value of 'A0F0FF2B-5047-4D53-8208-4F72616C2D42':
 
@@ -104,7 +104,7 @@ Color(red=0, green=255, blue=61, identifier=0)
 
 and
 
-```console
+```bash
 (oralb)> dm getchar "A0F0FF2B-5047-4D53-8208-4F72616C2D42"
 [   Ok   ] Value of 'A0F0FF2B-5047-4D53-8208-4F72616C2D42':
 
