@@ -16,10 +16,10 @@ import enum
 from typing import List
 
 from caterpillar.model import struct
-from caterpillar.shortcuts import ctx, F, this
-from caterpillar.fields import uint8, Enum
+from caterpillar.shortcuts import ctx, F, this, LittleEndian
+from caterpillar.fields import uint8, Enum, uint32
 
-from ._model import characteristic
+from .model import characteristic
 from .advertise import ProtocolVersion
 
 
@@ -149,7 +149,7 @@ class Quadrant(enum.IntEnum):
     NO_QUADRANTS_DEFINED = 0xF0
 
 
-@characteristic("FF24", "brushing_time")
+@characteristic("FF08", "brushing_time")
 @struct(kw_only=False)
 class BrushingTime:
     minutes: uint8
@@ -159,7 +159,7 @@ class BrushingTime:
 @characteristic("FF07", "brushing_mode")
 @struct(kw_only=False)
 class BrushingMode:
-    mode: F(ctx._parent.protocol) >> _brush_mode_fn
+    mode: F(ctx._root.protocol) >> _brush_mode_fn
 
 
 @characteristic("FF09", "toothbrush_quadrant")
@@ -184,6 +184,12 @@ class BrushInfo:
     type: BrushType
     protocol: ProtocolVersion
     version: uint8
+
+
+@characteristic("FF01", "brush_id")
+@struct(kw_only=False, order=LittleEndian)
+class BrushID:
+    id: uint32
 
 
 @struct

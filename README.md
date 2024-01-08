@@ -15,15 +15,20 @@ the command line. Current features are:
 
 The following features are proposed but not implemented yet:
 
-* Modify specific characteristics of a brush
+* Modify specific characteristics of a brush (partial support)
+* Request metadata information
 * Update the brush using the CLI
-
+* Protocol documentation
 
 ## Installation
 
 ```bash
 pip install git+https://github.com/MatrixEditor/oralb-io.git
 ```
+
+## Protocol
+
+A final documentation is not published yet, but WIP. Use [/oralb/blesdk/model](https://github.com/MatrixEditor/oralb-io/blob/master/oralb/blesdk/model.py) as a reference.
 
 ## Usage
 
@@ -73,6 +78,8 @@ Before we can read data from the device, we have to connect to it.
 > The device **must** be actived the whole time. Otherwise you have to
 > restart the shell and connect again. The *re-connect* mechanism is not
 > fully applicable by now.
+> You can try to extend the using `dm extend-connection`. If that fails,
+> you have to connect again.
 
 ```bash
 (oralb)> dm connect "FF:FF:FF:FF:FF:FF"
@@ -110,6 +117,48 @@ and
 
 Color(red=0, green=255, blue=61, identifier=0)
 ```
+
+### Write characterisitcs
+
+You can try to write new characteristics using `dm putchar`. The following example illustrates a sample write-process using the characteristic `00002a00` (device name):
+
+```bash
+(oralb)> dm putchar --no-response name --text "Hello, World!"
+```
+
+> [!TIP]
+> Retrieve a list of all available structs using `dm putchar -h` and
+> view specific options for a characteristic with `dm putchar $NAME -h`.
+
+### List Bluetooth cpabilities
+
+The device manager (`dm`) command supports displaying all bluetooth services
+of a device:
+
+```bash
+(oralb)> dm list services
+[  Info  ] Device services:
+
+Device: FF:FF:FF:FF:FF:FF
+├── 00001800-0000-1000-8000-00805f9b34fb (Handle: 1): 'Generic Access Profile'
+│   ├── 00002a00-0000-1000-8000-00805f9b34fb (Handle: 2): 'Device Name' ['read', 'write-without-response', 'write']
+...
+├── 00001801-0000-1000-8000-00805f9b34fb (Handle: 12): 'Generic Attribute Profile'
+├── a0f0ff00-5047-4d53-8208-4f72616c2d42 (Handle: 13): 'Unknown'
+│   ├── a0f0ff01-5047-4d53-8208-4f72616c2d42 (Handle: 14): 'Handle ID' ['read']
+│   ├── a0f0ff02-5047-4d53-8208-4f72616c2d42 (Handle: 17): 'Handle Type' ['read']
+...
+│   ├── a0f0ff0c-5047-4d53-8208-4f72616c2d42 (Handle: 55): 'Cache' ['read', 'write', 'notify']
+│   └── a0f0ff0d-5047-4d53-8208-4f72616c2d42 (Handle: 59): 'Sensor Data' ['read', 'notify']
+├── a0f0ff20-5047-4d53-8208-4f72616c2d42 (Handle: 63): 'Unknown'
+│   ├── a0f0ff21-5047-4d53-8208-4f72616c2d42 (Handle: 64): 'Command Status' ['read', 'write', 'notify']
+│   ├── a0f0ff22-5047-4d53-8208-4f72616c2d42 (Handle: 68): 'RTC' ['read', 'write']
+...
+└── a0f0ff80-5047-4d53-8208-4f72616c2d42 (Handle: 95): 'Unknown'
+    ├── a0f0ff81-5047-4d53-8208-4f72616c2d42 (Handle: 96): 'OTA Command' ['read', 'write']
+    ...
+```
+
 
 ## Firmware
 

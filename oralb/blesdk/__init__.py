@@ -14,7 +14,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 from .advertise import ProtocolVersion, is_brush, COMPANY_ID
 from .sonos import Model
-from ._model import (
+from .model import (
     BASE_UUID,
     characteristic,
     make_uuid,
@@ -30,6 +30,18 @@ from ._model import (
     UserID,
     RTC,
     Smiley,
+    RefillRemainder,
+    DashboardConfig,
+    Button,
+    BatteryLevel,
+    DeviceName,
+    GyroMotionData,
+    HighResolutionMotionData,
+    MotionData,
+    CalibrationData,
+    DashboardData,
+    SensorData,
+    Control
 )
 from .brush import (
     BrushAdvertisement,

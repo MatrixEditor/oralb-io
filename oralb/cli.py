@@ -79,4 +79,7 @@ async def amain():
 
 
 def main():
-    asyncio.run(amain())
+    try:
+        asyncio.run(amain())
+    except KeyboardInterrupt:
+        pass

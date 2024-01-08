@@ -17,8 +17,10 @@ from asyncio import all_tasks
 
 from bleak import BleakClient
 from caterpillar.shortcuts import unpack, pack
+from caterpillar.fields import FieldStruct
+from caterpillar.abc import hasstruct, getstruct
 
-from ._model import __characteristics__
+from .model import __characteristics__
 from .advertise import ProtocolVersion
 
 
@@ -29,23 +31,31 @@ class OralBProperty:
         self.name = name
         self.model = model
 
+    def _get_struct(self):
+        return self.model() if not hasstruct(self.model) else getstruct(self.model)
+
     async def _get(self):
         if self._value is None:
-            data = await self.obclient.client.read_gatt_char(self.name)
-            self._value = unpack(self.model, data, protocol=self.obclient.protocol)
+            data = await self.obclient.read(self.name)
+            struct = self._get_struct()
+            self._value = unpack(struct, data, protocol=self.obclient.protocol)
 
         return self._value
 
-    async def set(self, new_value):
+    async def set(self, new_value, response=None):
         self._value = new_value
-        await self.save()
+        await self.save(response)
 
-    async def save(self) -> None:
+    async def save(self, response=None) -> None:
         data = pack(self._value, self.model, protocol=self.obclient.protocol)
-        await self.obclient.client.write_gatt_char(self.name, data)
+        await self.obclient.write(self.name, data, response=response)
 
     def __await__(self):
         return self._get().__await__()
+
+
+def _empty_callback(_, _1):
+    pass
 
 
 class OralBClient:
@@ -57,11 +67,11 @@ class OralBClient:
         self.client = None
         self._fields = set()
 
-        for name, cls in __characteristics__.items():
-            setattr(self, cls.__cname__, OralBProperty(self, name, cls))
-            self._fields.add(cls.__cname__)
+        for name, cls_ in __characteristics__.items():
+            setattr(self, cls_.__cname__, OralBProperty(self, name, cls_))
+            self._fields.add(cls_.__cname__)
             # this is only for documentation purposes
-            type(self).__annotations__[cls.__cname__] = cls
+            type(self).__annotations__[cls_.__cname__] = cls_
 
     async def __aenter__(self):
         await self.connect()
@@ -71,17 +81,24 @@ class OralBClient:
         await self.client.disconnect()
 
     async def connect(self, address=None):
-        self.address = address or self.address
-        self.client = BleakClient(address, disconnected_callback=self.on_disconnect)
+        if self.client:
+            await self.disconnect()
 
-        await self.client.connect()
+        previous_address = self.address
+        self.address = address or self.address
+        if self.client is None or self.address != previous_address:
+            self.client = BleakClient(address)
+
+        return await self.client.connect()
 
     async def disconnect(self):
-        await self.client.disconnect()
+        return await self.client.disconnect()
 
-    def on_disconnect(self, _: BleakClient):
-        # also, remove the current client instance
-        self.client = None
+    async def unpair(self):
+        await self.client.unpair()
+
+    async def pair(self):
+        await self.client.pair()
 
     @property
     def characteristics(self) -> List[str]:
@@ -91,3 +108,27 @@ class OralBClient:
     def is_connected(self) -> bool:
         # the result can't be used on windows
         return self.client.is_connected if self.client else False
+
+    async def subscribe(self, char: str, callback) -> None:
+        await self.client.start_notify(char, callback)
+
+    async def stop_notify(self, char: str):
+        await self.client.stop_notify(char)
+
+    async def write(self, char: str, obj, response=False):
+        if not isinstance(obj, bytes):
+            obj = pack(obj, protocol=self.protocol)
+
+        return await self.client.write_gatt_char(char, obj, response)
+
+    async def write_notify_on(self, char: str, obj, callback=None, response=False):
+        await self.subscribe(char, callback or _empty_callback)
+        await self.write(char, obj, response=response)
+
+    async def read(self, char: str):
+        return await self.client.read_gatt_char(char)
+
+    async def write_read_on(self, write: str, obj, read: str):
+        # result is ignored for now
+        await self.write(write, obj, response=True)
+        return self.read(read)
