@@ -19,7 +19,7 @@ from caterpillar.model import struct
 from caterpillar.shortcuts import ctx, F, this, LittleEndian
 from caterpillar.fields import uint8, Enum, uint32
 
-from .model import characteristic
+from .model import characteristic, DeviceState, Pressure
 from .advertise import ProtocolVersion
 
 
@@ -68,33 +68,15 @@ class BrushType(enum.IntEnum):
     SONOS_EPLATFORM = 54
 
 
-class Status(enum.IntEnum):
+class BrushStatus(enum.IntEnum):
     __struct__ = uint8
 
+    UNKNOWN = 0xFF
     NOT_CONNECTED = 0
     PRE_RUN = 1
     IDLE = 2
     CHARGING = 3
     RUN = 4
-    UNKNOWN = 0xFF
-
-    # the following codes were taken from
-    # https://github.com/wise86-android/OralBlue_python/blob/master/OralBlue/BrushState.py
-    SETUP = 0x05
-    FLIGHT_MENU = 0x06
-    FINAL_TEST = 0x71
-    PCB_TEST = 0x72
-    SLEEP = 0x73
-    TRANSPORT = 0x74
-
-
-class State(enum.IntEnum):
-    __struct__ = uint8
-
-    UNKNOWN = 0xFF
-    NOTHING_PRESSED = 0x00
-    MODE_PRESSED = 0x04
-    POWER_PRESSED = 0x08
 
 
 class Mode(enum.IntEnum):
@@ -126,13 +108,6 @@ class V006Mode(enum.IntEnum):
     V006_SETTINGS = 8
 
 
-def _brush_mode_fn(value, context):
-    if value >= 6 or value == 0:
-        return F(Enum(V006Mode, uint8))
-
-    return F(Enum(Mode, uint8))
-
-
 class Quadrant(enum.IntEnum):
     __struct__ = uint8
 
@@ -154,6 +129,13 @@ class Quadrant(enum.IntEnum):
 class BrushingTime:
     minutes: uint8
     seconds: uint8
+
+
+def _brush_mode_fn(value, context):
+    if value >= 6 or value == 0:
+        return F(Enum(V006Mode, uint8))
+
+    return F(Enum(Mode, uint8))
 
 
 @characteristic("FF07", "brushing_mode")
@@ -192,13 +174,21 @@ class BrushID:
     id: uint32
 
 
+def _brush_status_fn(value: ProtocolVersion, context):
+    if value <= 5:
+        # An advertisement before V006 contains
+        # the current pressure state.
+        return Enum(Pressure.State, uint8)
+    return Enum(BrushStatus, uint8)
+
+
 @struct
 class BrushAdvertisement:
     protocol: ProtocolVersion
     type: BrushType
     version: uint8
-    state: State
-    status: Status
+    state: DeviceState.State
+    status: F(this.protocol) >> _brush_status_fn
     brush_time_min: uint8
     brush_time_sec: uint8
     brush_mode: F(this.protocol) >> _brush_mode_fn

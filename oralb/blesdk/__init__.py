@@ -50,8 +50,7 @@ from .brush import (
     BrushModes,
     BrushType,
     Quadrant,
-    State,
-    Status,
+    BrushStatus,
     Mode,
     ToothbrushQuadrant,
 )
