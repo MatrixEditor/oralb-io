@@ -56,8 +56,11 @@ class OralBCmd:
                 func = getattr(self, f"do_{name}")
                 func(args)
             except AttributeError:
-                argv = self.parsers[name].parse_args(shlex.split(args))
-                await argv.fn(self, argv)
+                try:
+                    argv = self.parsers[name].parse_args(shlex.split(args))
+                    await argv.fn(self, argv)
+                except KeyError:
+                    self.default(line)
 
     def default(self, line):
         pass

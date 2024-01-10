@@ -32,8 +32,10 @@ from caterpillar.fields import Bytes
 from caterpillar.exception import StructException
 
 from oralb.blesdk.advertise import is_brush, COMPANY_ID
-from oralb.blesdk.model import __characteristics__, make_uuid, CH_CONTROL, Control
+from oralb.blesdk.model import __characteristics__, make_uuid, Control
+from oralb.blesdk.model import CH_CONTROL, CH_SESSION_DATA
 from oralb.blesdk.brush import BrushAdvertisement
+from oralb.blesdk.metadata import metadata_models, data_models
 from oralb.blesdk.client import OralBClient, OralBProperty
 from oralb.exceptions import CLIStop
 
@@ -100,7 +102,7 @@ class ExitCommand(Command):
     async def do_exit(self, shell, argv):
         if shell.obclient and shell.obclient.is_connected:
             with console.status("Disconnecting from device..."):
-                await shell.obclient.disconnect()
+                await shell.obclient.unpair()
         raise CLIStop
 
 
@@ -209,7 +211,7 @@ class DeviceManagerCommand(Command):
         list_desc.set_defaults(fn=self.list_descriptors)
 
         put_mod = sub_parsers.add_parser("putchar")
-        put_mod.add_argument("--no-response", action='store_false')
+        put_mod.add_argument("--no-response", action="store_false")
         put_parsers = put_mod.add_subparsers()
 
         for uuid, model_ty in __characteristics__.items():
@@ -218,8 +220,16 @@ class DeviceManagerCommand(Command):
                 name, aliases=(uuid[4:8],), description=model_ty.__name__
             )
             self.build_parser(model_parser, model_ty)
-
         put_mod.set_defaults(fn=self.put_char)
+
+        control_mod = sub_parsers.add_parser("ctl", aliases=["control"])
+        control_subs = control_mod.add_subparsers()
+        control_read_meta = control_subs.add_parser("read-meta")
+        control_read_meta.add_argument("name")
+        control_read_meta.set_defaults(fn=self.control_read_meta)
+        control_read_data = control_subs.add_parser("read-data")
+        control_read_data.add_argument("name")
+        control_read_data.set_defaults(fn=self.control_read_data)
         return parser
 
     def _callback(self, shell):
@@ -241,6 +251,9 @@ class DeviceManagerCommand(Command):
         except Exception as err:
             print_err(f"{type(err).__name__}: {err}")
 
+    async def schedule_extend_connection(self, shell):
+        await asyncio.sleep(25)
+        await self.do_extend_connection(shell, None)
 
     async def do_connect(self, shell, argv):
         if shell.obclient is None:
@@ -295,6 +308,14 @@ class DeviceManagerCommand(Command):
         else:
             shell.obclient = obclient
             print_ok(f"Connected to {obclient.address!r}")
+            try:
+                with console.status("Configuring extended connection..."):
+                    await self.do_extend_connection(shell, argv)
+                    loop = asyncio.get_event_loop()
+                    loop.create_task(self.schedule_extend_connection(shell))
+            except (OSError, exc.BleakError):
+                print_info("Could not connect fully to device, reconnecting...")
+                return await self.do_connect(shell, argv)
             return True
 
     @requires_connection
@@ -469,3 +490,50 @@ class DeviceManagerCommand(Command):
         with Live(tree):
             for desc in services.descriptors.values():
                 tree.add(str(desc))
+
+    @requires_connection
+    async def control_read_meta(self, shell, argv):
+        await self.read_data(
+            shell, argv, Control.METADATA, Control.read_metadata, metadata_models()
+        )
+
+    @requires_connection
+    async def control_read_data(self, shell, argv):
+        await self.read_data(
+            shell, argv, Control.DataRead, Control.read_data, data_models()
+        )
+
+    async def read_data(self, shell, argv, mapping, factory, models) -> None:
+        obclient: OralBClient = shell.obclient
+        name = argv.name
+
+        try:
+            value = int(name)
+        except ValueError:
+            try:
+                value = mapping[name.upper()]
+            except KeyError:
+                print_err(f"Unknown metadata selected: {name!r}")
+                return
+        try:
+            data: bytes = await obclient.write_read_on(
+                CH_CONTROL, factory(value), CH_SESSION_DATA
+            )
+        except exc.BleakError as err:
+            msg = str(err)
+            # if err.endswith("Access Denied"):
+            #     pass
+            print_err(msg)
+        except Exception as err:
+            print_err(f"{type(err).__name__}: {err}")
+            traceback.print_exc()
+        else:
+            model = models.get(value, None)
+            if not model:
+                print_warn(f"No struct configured for type: {value}")
+                print(data)
+            else:
+                try:
+                    print(unpack(model, data))
+                except StructException:
+                    print_warn(f"Invalid data: {data}")

@@ -1,6 +1,6 @@
 # OralB IO
 
-[![python](https://img.shields.io/python/required-version-toml?tomlFilePath=https%3A%2F%2Fraw.githubusercontent.com%2FMatrixEditor%oralb-io%2Fmaster%2Fpyproject.toml&logo=python)](https://www.python.org/downloads/)
+[![python](https://img.shields.io/python/required-version-toml?tomlFilePath=https%3A%2F%2Fraw.githubusercontent.com%2FMatrixEditor%2Foralb-io%2Fmaster%2Fpyproject.toml&logo=python)](https://www.python.org/downloads/)
 ![GitHub issues](https://img.shields.io/github/issues/MatrixEditor/oralb-io?logo=github)
 ![GitHub License](https://img.shields.io/github/license/MatrixEditor/oralb-io?logo=github)
 

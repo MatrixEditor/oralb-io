@@ -32,7 +32,9 @@ class OralBProperty:
         self.model = model
 
     def _get_struct(self):
-        return self.model() if not hasstruct(self.model) else getstruct(self.model)
+        if isinstance(self.model, type):
+            return self.model() if not hasstruct(self.model) else getstruct(self.model)
+        return self.model
 
     async def _get(self):
         if self._value is None:
@@ -131,4 +133,4 @@ class OralBClient:
     async def write_read_on(self, write: str, obj, read: str):
         # result is ignored for now
         await self.write(write, obj, response=True)
-        return self.read(read)
+        return await self.read(read)

@@ -394,11 +394,10 @@ class SensorData(Transformer):
         return data
 
 
-
 def _cmd_condition(context) -> bool:
     protocol = context._root.protocol
     command = context._obj.command
-    if command in list(range(40, 45)): # 40-44
+    if command in list(range(40, 45)):  # 40-44
         return protocol <= 6
 
     if command in (38, 47):
@@ -406,8 +405,11 @@ def _cmd_condition(context) -> bool:
 
     return True
 
+
 # @characteristic("FF21", "control")
 CH_CONTROL = make_uuid("FF21")
+CH_SESSION_DATA = make_uuid("FF29")
+
 
 @struct(kw_only=False)
 class Control:
@@ -537,3 +539,7 @@ class Control:
     @classmethod
     def motor_ramping(cls, value: int) -> "Control":
         return cls(46, value)
+
+    @classmethod
+    def read_data(cls, value: "Control.DataRead") -> "Control":
+        return cls(Control.Command.READ_DATA, value)

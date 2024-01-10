@@ -13,7 +13,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 from .advertise import ProtocolVersion, is_brush, COMPANY_ID
-from .sonos import Model
 from .model import (
     BASE_UUID,
     characteristic,
