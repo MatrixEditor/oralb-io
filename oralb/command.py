@@ -180,7 +180,11 @@ cid2characteristic = {x[4:8]: y for x, y in __characteristics__.items()}
 
 @command
 class DeviceManagerCommand(Command):
-    """..."""
+    """
+    The device-manager ('dm') can be used to configure devices as well
+    as read metadata information. More information about how to use this
+    command is given in the online documentation.
+    """
 
     name = "dm"
 
@@ -537,3 +541,18 @@ class DeviceManagerCommand(Command):
                     print(unpack(model, data))
                 except StructException:
                     print_warn(f"Invalid data: {data}")
+
+
+@command
+class HelpCommand(Command):
+    name = "help"
+
+    def get_parser(self) -> argparse.ArgumentParser:
+        parser = super().get_parser()
+        parser.set_defaults(fn=self.show_help)
+        return parser
+
+    async def show_help(self, shell, _):
+        print_info("Implemented commands are:\n" + "-"*36)
+        print("  ".join(shell.parsers))
+        print("\nUse '<command> --help' to retrieve further information.")

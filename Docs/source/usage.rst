@@ -128,3 +128,33 @@ You can view the list of required arguments using :code:`-h`.
         --face FACE  type: int
 
 
+Listing implemented characteristics
+-----------------------------------
+
+There is also a command that will display all services, characteristics or
+descriptors associated with a device. (*You have to be connected in order to
+execute this command*)
+
+.. code-block:: console
+    :caption: A treeview of service configurations
+
+    (oralb)> dm list services
+    [  Info  ] Device services:
+
+    Device: FF:FF:FF:FF:FF:FF
+    ├── 00001800-0000-1000-8000-00805f9b34fb (Handle: 1): 'Generic Access Profile'
+    │   ├── 00002a00-0000-1000-8000-00805f9b34fb (Handle: 2): 'Device Name' ['read', 'write-without-response', 'write']
+    ...
+    ├── a0f0ff00-5047-4d53-8208-4f72616c2d42 (Handle: 13): 'Unknown'
+    │   ├── a0f0ff01-5047-4d53-8208-4f72616c2d42 (Handle: 14): 'Handle ID' ['read']
+    │   ├── a0f0ff02-5047-4d53-8208-4f72616c2d42 (Handle: 17): 'Handle Type' ['read']
+    ...
+    │   ├── a0f0ff0c-5047-4d53-8208-4f72616c2d42 (Handle: 55): 'Cache' ['read', 'write', 'notify']
+    │   └── a0f0ff0d-5047-4d53-8208-4f72616c2d42 (Handle: 59): 'Sensor Data' ['read', 'notify']
+    ├── a0f0ff20-5047-4d53-8208-4f72616c2d42 (Handle: 63): 'Unknown'
+    │   ├── a0f0ff21-5047-4d53-8208-4f72616c2d42 (Handle: 64): 'Command Status' ['read', 'write', 'notify']
+    │   ├── a0f0ff22-5047-4d53-8208-4f72616c2d42 (Handle: 68): 'RTC' ['read', 'write']
+    ...
+    └── a0f0ff80-5047-4d53-8208-4f72616c2d42 (Handle: 95): 'Unknown'
+        ├── a0f0ff81-5047-4d53-8208-4f72616c2d42 (Handle: 96): 'OTA Command' ['read', 'write']
+        ...

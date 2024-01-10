@@ -78,6 +78,15 @@ class BrushStatus(enum.IntEnum):
     CHARGING = 3
     RUN = 4
 
+    # the following codes were taken from
+    # https://github.com/wise86-android/OralBlue_python/blob/master/OralBlue/BrushState.py
+    SETUP = 0x05
+    FLIGHT_MENU = 0x06
+    FINAL_TEST = 0x71
+    PCB_TEST = 0x72
+    SLEEP = 0x73
+    TRANSPORT = 0x74
+
 
 class Mode(enum.IntEnum):
     __struct__ = uint8
