@@ -39,36 +39,7 @@ To start the CLI just type `oralbcli`.
 The `ble` command can be used to view all Bluetooth devices in the area. Additionally,
 advertisements from brushes will be displayed in detail:
 
-```bash
-(oralb)> ble discover
-[  Info  ] Scan complete: found 17 devices.
-
-                   Detailed device info
-┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━┳━━━━━━━━━┓
-┃ Address           ┃       Name        ┃ rssi ┃ isBrush ┃
-┡━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━╇━━━━━━━━━┩
-│ 01:02:03:04:05:06 │       ....        │ -57  │  False  │
-│ FF:FF:FF:FF:FF:FF │ Oral-B Toothbrush │ -46  │  True   │  # we need only the address
-│ ...               │       None        │ -55  │  False  │
-└───────────────────┴───────────────────┴──────┴─────────┘
-[  Info  ] Located 1 brushes:
-
-FF:FF:FF:FF:FF:FF: Oral-B Toothbrush
-------------------------------------
-BrushAdvertisement(
-    protocol=<ProtocolVersion.V006: 6>,
-    type=<Type.SONOS_BIG_TI: 50>,
-    version=107,
-    state=<State.POWER_PRESSED: 8>,
-    status=<Status.PCB_TEST: 114>,
-    brush_time_min=0,
-    brush_time_sec=0,
-    brush_mode=<V006Mode.V006_CLEAN: 0>,
-    brush_progress=1,
-    quadrant_completion=<Quadrant.FIRST_QUADRANT: 0>,
-    total_quadrants=4
-)
-```
+![ble-discover](/Docs/source/_static/ble-discover.gif)
 
 ### Connect to a toothbrush
 
