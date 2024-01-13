@@ -123,10 +123,6 @@ class OralBClient:
 
         return await self.client.write_gatt_char(char, obj, response)
 
-    async def write_notify_on(self, char: str, obj, callback=None, response=False):
-        await self.subscribe(char, callback or _empty_callback)
-        await self.write(char, obj, response=response)
-
     async def read(self, char: str):
         return await self.client.read_gatt_char(char)
 

@@ -20,26 +20,23 @@ from caterpillar.exception import *
 
 BASE_UUID = "A0F0XXXX-5047-4D53-8208-4F72616C2D42"
 
-__characteristics__ = {}
-# Missing structs are:
-#   FF0C - CacheData
-#   FF0D - SensorData
-#   FF21 - Control / Command Status
-#   FF26 - QuadrantTimes
-#   FF29 - SessionData (varies from version to version)
-#   FF2A - Flight Mode
-#   FF83 - LegacyOTAPayLoad2
-# + all charger commands that start with 3C..
+# struct configuration
 be = BigEndian
 le = LittleEndian
 opt.set_struct_flags(opt.S_REPLACE_TYPES)
 
+#: all runtime characteristics will be mapped to their corresponding
+#: struct type.
+__characteristics__: dict = {}
+
 
 def make_uuid(cid: str) -> str:
+    """Generates a uuid from the given short uuid"""
     return BASE_UUID.replace("XXXX", cid)
 
 
 def register(cid: str, model) -> None:
+    """Registers a new struct type to the given uuid"""
     __characteristics__[cid] = model
 
 
@@ -52,27 +49,78 @@ def characteristic(cid: str, name: str):
     return wrap
 
 
-@characteristic("FF03", "user_id")
+S_CAPABILITIES = make_uuid("FF00")
+CH_DEVICE_ID = make_uuid("FF01")
+CH_DEVICE_INFO = make_uuid("FF02")
+CH_USER_ID = make_uuid("FF03")
+CH_DEVICE_STATE = make_uuid("FF04")
+CH_BATTERY_LEVEL = make_uuid("FF05")
+CH_BUTTON = make_uuid("FF06")
+CH_BRUSHING_MODE = make_uuid("FF07")
+CH_BRUSHING_TIME = make_uuid("FF08")
+CH_QUADRANT = make_uuid("FF09")
+CH_SMILEY = make_uuid("FF0A")
+CH_PRESSURE = make_uuid("FF0B")
+# ff0c (Handle: 55): 'Cache' ['read', 'write', 'notify'] (needs AUTH)
+CH_SENSOR_DATA = make_uuid("FF0D")
+
+S_CONFIG = make_uuid("FF20")
+CH_CONTROL = make_uuid("FF21")
+CH_RTC = make_uuid("FF22")
+CH_TIMEZONE = make_uuid("FF23")
+CH_BRUSH_MODES = make_uuid("FF25")
+# ff26 (Handle: 77): 'Quadrant Times' ['read', 'write']
+CH_TONGUE_TIME = make_uuid("FF27")
+CH_SESSION_DATA = make_uuid("FF29")
+# ff2a (Handle: 83): 'Flight Mode' ['read', 'write']
+CH_MY_COLOR = make_uuid("FF2B")
+CH_DASHBOARD_CONFIG = make_uuid("FF2C")
+CH_REFILL_REMAINDER = make_uuid("FF2D")
+
+S_OTA = make_uuid("FF80")
+CH_OTA_COMMAND = make_uuid("FF81")
+CH_OTA_PAYLOAD = make_uuid("FF82")
+# ff83 (Handle: 102): 'OTA Payload 2'
+CH_OTA_STATE = make_uuid("FF84")
+CH_OTA_TRANSFER_SIZE = make_uuid("FF85")
+
+
+@characteristic(CH_USER_ID, "user_id")
 @struct(kw_only=False)
 class UserID:
-    id: uint8
+    """Characteristic representing a user ID."""
+
+    id_: uint8
+    """The user ID."""
 
 
-@characteristic("FF2B", "my_color")
-@struct(kw_only=False)
+@characteristic(CH_MY_COLOR, "my_color")
+@struct
 class Color:
+    """Characteristic representing a color."""
+
+    #: The red component of the color.
     red: uint8
+
+    #: The green component of the color.
     green: uint8
+
+    #: The blue component of the color.
     blue: uint8
+
+    #: The identifier of the color.
     identifier: uint8
 
 
-@characteristic("FF04", "device_state")
+@characteristic(CH_DEVICE_STATE, "device_state")
 @struct(kw_only=False)
 class DeviceState:
-    class State(enum.IntEnum):
-        __struct__ = uint8
+    """Represents the state of a device."""
 
+    class State(enum.IntEnum):
+        """Enumeration representing the main states of the device."""
+
+        __struct__ = uint8
         UNKNOWN = 0
         INIT = 1
         IDLE = 2
@@ -90,24 +138,28 @@ class DeviceState:
         CALIBRATION_TEST = 117
 
     class SubState(enum.IntEnum):
-        __struct__ = uint8
+        """Enumeration representing the sub-states of the device."""
 
+        __struct__ = uint8
         UNKNOWN = 0xFF
         TRANSPORT_DISABLED_DEACTIVATE_TIMER_DISABLED = 0
         TRANSPORT_ENABLED_DEACTIVATE_TIMER_DISABLED = 1
         TRANSPORT_ENABLED_DEACTIVATE_TIMER_ENABLED = 2
 
+    #: The main state of the device.
     state: State
+
+    #: The sub-state of the device.
     sub_state: SubState
 
 
-@characteristic("FF22", "rtc")
+@characteristic(CH_RTC, "rtc")
 @struct(order=LittleEndian, kw_only=False)
 class RTC:
     epochMillis: uint32 = 946684800000
 
 
-@characteristic("FF0A", "smiley")
+@characteristic(CH_SMILEY, "smiley")
 @struct(kw_only=False)
 class Smiley:
     class Face(enum.IntEnum):
@@ -125,21 +177,21 @@ class Smiley:
     face: Face
 
 
-@characteristic("FF23", "timezone")
+@characteristic(CH_TIMEZONE, "timezone")
 @struct(kw_only=False)
 class Timezone:
     # This struct has to be validated!
     zone: uint8
 
 
-@characteristic("FF27", "tongue_time")
+@characteristic(CH_TONGUE_TIME, "tongue_time")
 @struct(kw_only=False)
 class TongueTime:
     # This struct has to be validated!
     duration: uint8
 
 
-@characteristic("FF81", "ota_command")
+@characteristic(CH_OTA_COMMAND, "ota_command")
 @struct(kw_only=False)
 class OTACommand:
     class Command(enum.IntEnum):
@@ -155,13 +207,13 @@ class OTACommand:
     command: Command
 
 
-@characteristic("FF82", "ota_payload")
+@characteristic(CH_OTA_PAYLOAD, "ota_payload")
 @struct(kw_only=False)
 class OTAPayload:
     payload: Memory(...)
 
 
-@characteristic("FF84", "ota_state")
+@characteristic(CH_OTA_STATE, "ota_state")
 @struct(kw_only=False)
 class OTAState:
     class State(enum.IntEnum):
@@ -182,14 +234,14 @@ class OTAState:
     state: State
 
 
-@characteristic("FF85", "ota_transfer_size")
+@characteristic(CH_OTA_TRANSFER_SIZE, "ota_transfer_size")
 @struct(kw_only=False)
 class OTATransferSize:
     # This struct has to be validated!
     value: uint32
 
 
-@characteristic("FF0B", "pressure")
+@characteristic(CH_PRESSURE, "pressure")
 @struct(order=LittleEndian)
 class Pressure:
     # NOTE: only for versions >= 6
@@ -208,7 +260,7 @@ class Pressure:
     identifier: uint8
 
 
-@characteristic("FF2D", "refill_remainder")
+@characteristic(CH_REFILL_REMAINDER, "refill_remainder")
 @struct(order=LittleEndian, kw_only=False)
 class RefillRemainder:
     class State(enum.IntEnum):
@@ -225,7 +277,7 @@ class RefillRemainder:
     brushing_seconds_left: uint16
 
 
-@characteristic("FF2C", "dashboard")
+@characteristic(CH_DASHBOARD_CONFIG, "dashboard")
 @struct(order=LittleEndian, kw_only=False)
 class DashboardConfig:
     class Divider(enum.IntEnum):
@@ -238,7 +290,7 @@ class DashboardConfig:
     divider: Divider
 
 
-@characteristic("FF06", "button")
+@characteristic(CH_BUTTON, "button")
 @struct(kw_only=False)
 class Button:
     class State(enum.IntEnum):
@@ -251,7 +303,7 @@ class Button:
     state: State  #
 
 
-@characteristic("FF05", "battery_level")
+@characteristic(CH_BATTERY_LEVEL, "battery_level")
 @struct(order=LittleEndian, kw_only=False)
 class BatteryLevel:
     level: uint8
@@ -327,7 +379,7 @@ class DashboardData:
     motion_z: int8
 
 
-@characteristic("FF0D", "sensor_data")
+@characteristic(CH_SENSOR_DATA, "sensor_data")
 class SensorData(Transformer):
     # This field is only used when preparing the parser
     # for the CLI.
@@ -407,10 +459,6 @@ def _cmd_condition(context) -> bool:
 
 
 # @characteristic("FF21", "control")
-CH_CONTROL = make_uuid("FF21")
-CH_SESSION_DATA = make_uuid("FF29")
-
-
 @struct(kw_only=False)
 class Control:
     class Command:

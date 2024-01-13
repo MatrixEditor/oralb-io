@@ -19,8 +19,11 @@ from caterpillar.model import struct
 from caterpillar.shortcuts import ctx, F, this, LittleEndian
 from caterpillar.fields import uint8, Enum, uint32
 
-from .model import characteristic, DeviceState, Pressure
 from .advertise import ProtocolVersion
+from .model import characteristic, DeviceState, Pressure
+from .model import CH_BRUSHING_MODE, CH_BRUSHING_TIME
+from .model import CH_QUADRANT, CH_DEVICE_ID, CH_DEVICE_INFO
+from .model import CH_BRUSH_MODES
 
 
 class BrushType(enum.IntEnum):
@@ -133,7 +136,7 @@ class Quadrant(enum.IntEnum):
     NO_QUADRANTS_DEFINED = 0xF0
 
 
-@characteristic("FF08", "brushing_time")
+@characteristic(CH_BRUSHING_TIME, "brushing_time")
 @struct(kw_only=False)
 class BrushingTime:
     minutes: uint8
@@ -147,20 +150,20 @@ def _brush_mode_fn(value, context):
     return F(Enum(Mode, uint8))
 
 
-@characteristic("FF07", "brushing_mode")
+@characteristic(CH_BRUSHING_MODE, "brushing_mode")
 @struct(kw_only=False)
 class BrushingMode:
     mode: F(ctx._root.protocol) >> _brush_mode_fn
 
 
-@characteristic("FF09", "toothbrush_quadrant")
+@characteristic(CH_QUADRANT, "toothbrush_quadrant")
 @struct(kw_only=False)
 class ToothbrushQuadrant:
     quadrant: Quadrant
     num_quadrants: uint8
 
 
-@characteristic("FF25", "brush_modes")
+@characteristic(CH_BRUSH_MODES, "brush_modes")
 @struct(kw_only=False)
 class BrushModes:
     modes: uint8[8]
@@ -169,7 +172,7 @@ class BrushModes:
         return list(map(Mode, self.modes))
 
 
-@characteristic("FF02", "brush_info")
+@characteristic(CH_DEVICE_INFO, "brush_info")
 @struct(kw_only=False)
 class BrushInfo:
     type: BrushType
@@ -177,7 +180,7 @@ class BrushInfo:
     version: uint8
 
 
-@characteristic("FF01", "brush_id")
+@characteristic(CH_DEVICE_ID, "brush_id")
 @struct(kw_only=False, order=LittleEndian)
 class BrushID:
     id: uint32
@@ -193,14 +196,49 @@ def _brush_status_fn(value: ProtocolVersion, context):
 
 @struct
 class BrushAdvertisement:
+    """Bluetooth Low Energy advertise sent from oral-b devices."""
+
+    #: The used protocol version. Note that the packet structure
+    #: may change according to the version configuration
     protocol: ProtocolVersion
+
+    #: the device type (this value conforms to a model identifier
+    #: and is not the model name)
     type: BrushType
+
+    #: the current firmware version
     version: uint8
+
+    #: Describes the current state of the device.
     state: DeviceState.State
+
+    #: In packets using protocol version below V006, this value
+    #: describes the current pressure measurement. Otherwise,
+    #: another device status is set.
     status: F(this.protocol) >> _brush_status_fn
+
+    #: Defines the current brushing time in minutes
     brush_time_min: uint8
+
+    #: Defines  the current brushing time in seconds
     brush_time_sec: uint8
+
+    #: Specifies the currently used brushing mode. The used enumeration
+    #: varies based on the current protocol version.
     brush_mode: F(this.protocol) >> _brush_mode_fn
+
+    #: This field displays the current brushing progress (no real
+    #: use-case?)
     brush_progress: uint8
+
+    #: describes, which quadrant is currently processed (only during
+    #: a brushing session)
     quadrant_completion: Quadrant
+
+    #: This fields specifies either the amount of quadrants or (only in
+    #: V008) a device substate.
     total_quadrants: uint8
+
+    # TODO:
+    # @property
+    # def pressure(self) -> Pressure: ...

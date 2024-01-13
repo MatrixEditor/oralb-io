@@ -43,6 +43,6 @@ def info_url(
     #     2: path to info document ("oralb" / <hex(model)>)
     #     3: document path
     path = f"oralb/0x{model:04X}/0x{model:04X}.json"
-    return "/".join([host, path])
+    return f"https://{host}/{path}"
 
 

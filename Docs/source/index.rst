@@ -19,12 +19,10 @@ This library features:
 .. toctree::
    :hidden:
    :maxdepth: 2
-   :numbered:
    :caption: Resources
 
    usage.rst
    examples.rst
-   firmware.rst
    API/index.rst
 
 Installation
