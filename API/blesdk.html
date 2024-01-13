@@ -206,15 +206,331 @@ source code instead.</p>
 </div>
 <section id="advertisement">
 <h2>Advertisement<a class="headerlink" href="#advertisement" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="oralb.blesdk.BrushAdvertisement">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oralb.blesdk.</span></span><span class="sig-name descname"><span class="pre">BrushAdvertisement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">protocol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ProtocolVersion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BrushType</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#oralb.blesdk.model.DeviceState.State" title="oralb.blesdk.model.DeviceState.State"><span class="pre">State</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">brush_time_min</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">brush_time_sec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">brush_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">brush_progress</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quadrant_completion</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Quadrant</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_quadrants</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/oralb/blesdk/brush.html#BrushAdvertisement"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#oralb.blesdk.BrushAdvertisement" title="Link to this definition">#</a></dt>
+<dd><p>Bluetooth Low Energy advertise sent from oral-b devices.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oralb.blesdk.BrushAdvertisement.brush_mode">
+<span class="sig-name descname"><span class="pre">brush_mode</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Any</span></em><a class="headerlink" href="#oralb.blesdk.BrushAdvertisement.brush_mode" title="Link to this definition">#</a></dt>
+<dd><p>Specifies the currently used brushing mode. The used enumeration
+varies based on the current protocol version.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oralb.blesdk.BrushAdvertisement.brush_progress">
+<span class="sig-name descname"><span class="pre">brush_progress</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#oralb.blesdk.BrushAdvertisement.brush_progress" title="Link to this definition">#</a></dt>
+<dd><p>This field displays the current brushing progress (no real
+use-case?)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oralb.blesdk.BrushAdvertisement.brush_time_min">
+<span class="sig-name descname"><span class="pre">brush_time_min</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#oralb.blesdk.BrushAdvertisement.brush_time_min" title="Link to this definition">#</a></dt>
+<dd><p>Defines the current brushing time in minutes</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oralb.blesdk.BrushAdvertisement.brush_time_sec">
+<span class="sig-name descname"><span class="pre">brush_time_sec</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#oralb.blesdk.BrushAdvertisement.brush_time_sec" title="Link to this definition">#</a></dt>
+<dd><p>Defines  the current brushing time in seconds</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oralb.blesdk.BrushAdvertisement.protocol">
+<span class="sig-name descname"><span class="pre">protocol</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ProtocolVersion</span></em><a class="headerlink" href="#oralb.blesdk.BrushAdvertisement.protocol" title="Link to this definition">#</a></dt>
+<dd><p>The used protocol version. Note that the packet structure
+may change according to the version configuration</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oralb.blesdk.BrushAdvertisement.quadrant_completion">
+<span class="sig-name descname"><span class="pre">quadrant_completion</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Quadrant</span></em><a class="headerlink" href="#oralb.blesdk.BrushAdvertisement.quadrant_completion" title="Link to this definition">#</a></dt>
+<dd><p>describes, which quadrant is currently processed (only during
+a brushing session)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oralb.blesdk.BrushAdvertisement.state">
+<span class="sig-name descname"><span class="pre">state</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#oralb.blesdk.model.DeviceState.State" title="oralb.blesdk.model.DeviceState.State"><span class="pre">State</span></a></em><a class="headerlink" href="#oralb.blesdk.BrushAdvertisement.state" title="Link to this definition">#</a></dt>
+<dd><p>Describes the current state of the device.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oralb.blesdk.BrushAdvertisement.status">
+<span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Any</span></em><a class="headerlink" href="#oralb.blesdk.BrushAdvertisement.status" title="Link to this definition">#</a></dt>
+<dd><p>In packets using protocol version below V006, this value
+describes the current pressure measurement. Otherwise,
+another device status is set.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oralb.blesdk.BrushAdvertisement.total_quadrants">
+<span class="sig-name descname"><span class="pre">total_quadrants</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#oralb.blesdk.BrushAdvertisement.total_quadrants" title="Link to this definition">#</a></dt>
+<dd><p>This fields specifies either the amount of quadrants or (only in
+V008) a device substate.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oralb.blesdk.BrushAdvertisement.type">
+<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BrushType</span></em><a class="headerlink" href="#oralb.blesdk.BrushAdvertisement.type" title="Link to this definition">#</a></dt>
+<dd><p>the device type (this value conforms to a model identifier
+and is not the model name)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="oralb.blesdk.BrushAdvertisement.version">
+<span class="sig-name descname"><span class="pre">version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#oralb.blesdk.BrushAdvertisement.version" title="Link to this definition">#</a></dt>
+<dd><p>the current firmware version</p>
+</dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="model-structs">
-<h2>Model Structs<a class="headerlink" href="#model-structs" title="Link to this heading">#</a></h2>
+<section id="module-oralb.blesdk.model">
+<span id="model-structs"></span><h2>Model Structs<a class="headerlink" href="#module-oralb.blesdk.model" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="oralb.blesdk.model.BatteryLevel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oralb.blesdk.model.</span></span><span class="sig-name descname"><span class="pre">BatteryLevel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seconds_left</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">milli_volts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">milli_amperes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temperature</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">avail_soc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dcmas</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rcmas</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">soc_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oralb.blesdk.model.BatteryLevel" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="oralb.blesdk.model.Button">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oralb.blesdk.model.</span></span><span class="sig-name descname"><span class="pre">Button</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#oralb.blesdk.model.Button.State" title="oralb.blesdk.model.Button.State"><span class="pre">oralb.blesdk.model.Button.State</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oralb.blesdk.model.Button" title="Link to this definition">#</a></dt>
+<dd><dl class="py class">
+<dt class="sig sig-object py" id="oralb.blesdk.model.Button.State">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">State</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oralb.blesdk.model.Button.State" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="oralb.blesdk.model.CalibrationData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oralb.blesdk.model.</span></span><span class="sig-name descname"><span class="pre">CalibrationData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">calibration_x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calibration_y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calibration_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oralb.blesdk.model.CalibrationData" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="oralb.blesdk.model.Color">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oralb.blesdk.model.</span></span><span class="sig-name descname"><span class="pre">Color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">red</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">green</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blue</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">identifier</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oralb.blesdk.model.Color" title="Link to this definition">#</a></dt>
+<dd><p>Characteristic representing a color.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="oralb.blesdk.model.Control">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oralb.blesdk.model.</span></span><span class="sig-name descname"><span class="pre">Control</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oralb.blesdk.model.Control" title="Link to this definition">#</a></dt>
+<dd><dl class="py class">
+<dt class="sig sig-object py" id="oralb.blesdk.model.Control.DataRead">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DataRead</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oralb.blesdk.model.Control.DataRead" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="oralb.blesdk.model.Control.METADATA">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">METADATA</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oralb.blesdk.model.Control.METADATA" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="oralb.blesdk.model.DashboardConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oralb.blesdk.model.</span></span><span class="sig-name descname"><span class="pre">DashboardConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">session_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divider</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#oralb.blesdk.model.DashboardConfig.Divider" title="oralb.blesdk.model.DashboardConfig.Divider"><span class="pre">oralb.blesdk.model.DashboardConfig.Divider</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oralb.blesdk.model.DashboardConfig" title="Link to this definition">#</a></dt>
+<dd><dl class="py class">
+<dt class="sig sig-object py" id="oralb.blesdk.model.DashboardConfig.Divider">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Divider</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oralb.blesdk.model.DashboardConfig.Divider" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="oralb.blesdk.model.DashboardData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oralb.blesdk.model.</span></span><span class="sig-name descname"><span class="pre">DashboardData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#oralb.blesdk.model.DashboardData.Status" title="oralb.blesdk.model.DashboardData.Status"><span class="pre">oralb.blesdk.model.DashboardData.Status</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gyro_x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gyro_y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gyro_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">motion_x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">motion_y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">motion_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oralb.blesdk.model.DashboardData" title="Link to this definition">#</a></dt>
+<dd><dl class="py class">
+<dt class="sig sig-object py" id="oralb.blesdk.model.DashboardData.Status">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oralb.blesdk.model.DashboardData.Status" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="oralb.blesdk.model.DeviceName">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oralb.blesdk.model.</span></span><span class="sig-name descname"><span class="pre">DeviceName</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oralb.blesdk.model.DeviceName" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="oralb.blesdk.model.DeviceState">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oralb.blesdk.model.</span></span><span class="sig-name descname"><span class="pre">DeviceState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#oralb.blesdk.model.DeviceState.State" title="oralb.blesdk.model.DeviceState.State"><span class="pre">State</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sub_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#oralb.blesdk.model.DeviceState.SubState" title="oralb.blesdk.model.DeviceState.SubState"><span class="pre">SubState</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oralb.blesdk.model.DeviceState" title="Link to this definition">#</a></dt>
+<dd><p>Represents the state of a device.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="oralb.blesdk.model.DeviceState.State">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">State</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oralb.blesdk.model.DeviceState.State" title="Link to this definition">#</a></dt>
+<dd><p>Enumeration representing the main states of the device.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="oralb.blesdk.model.DeviceState.SubState">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SubState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oralb.blesdk.model.DeviceState.SubState" title="Link to this definition">#</a></dt>
+<dd><p>Enumeration representing the sub-states of the device.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="oralb.blesdk.model.GyroMotionData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oralb.blesdk.model.</span></span><span class="sig-name descname"><span class="pre">GyroMotionData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gyro_x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gyro_y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gyro_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">motion_x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">motion_y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">motion_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oralb.blesdk.model.GyroMotionData" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="oralb.blesdk.model.HighResolutionMotionData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oralb.blesdk.model.</span></span><span class="sig-name descname"><span class="pre">HighResolutionMotionData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">motion_x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">motion_y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">motion_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oralb.blesdk.model.HighResolutionMotionData" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="oralb.blesdk.model.MotionData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oralb.blesdk.model.</span></span><span class="sig-name descname"><span class="pre">MotionData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">motion_x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">motion_y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">motion_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oralb.blesdk.model.MotionData" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="oralb.blesdk.model.OTACommand">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oralb.blesdk.model.</span></span><span class="sig-name descname"><span class="pre">OTACommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#oralb.blesdk.model.OTACommand.Command" title="oralb.blesdk.model.OTACommand.Command"><span class="pre">oralb.blesdk.model.OTACommand.Command</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oralb.blesdk.model.OTACommand" title="Link to this definition">#</a></dt>
+<dd><dl class="py class">
+<dt class="sig sig-object py" id="oralb.blesdk.model.OTACommand.Command">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oralb.blesdk.model.OTACommand.Command" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="oralb.blesdk.model.OTAPayload">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oralb.blesdk.model.</span></span><span class="sig-name descname"><span class="pre">OTAPayload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">payload</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">memoryview</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oralb.blesdk.model.OTAPayload" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="oralb.blesdk.model.OTAState">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oralb.blesdk.model.</span></span><span class="sig-name descname"><span class="pre">OTAState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#oralb.blesdk.model.OTAState.State" title="oralb.blesdk.model.OTAState.State"><span class="pre">oralb.blesdk.model.OTAState.State</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oralb.blesdk.model.OTAState" title="Link to this definition">#</a></dt>
+<dd><dl class="py class">
+<dt class="sig sig-object py" id="oralb.blesdk.model.OTAState.State">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">State</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oralb.blesdk.model.OTAState.State" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="oralb.blesdk.model.OTATransferSize">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oralb.blesdk.model.</span></span><span class="sig-name descname"><span class="pre">OTATransferSize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oralb.blesdk.model.OTATransferSize" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="oralb.blesdk.model.Pressure">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oralb.blesdk.model.</span></span><span class="sig-name descname"><span class="pre">Pressure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#oralb.blesdk.model.Pressure.State" title="oralb.blesdk.model.Pressure.State"><span class="pre">oralb.blesdk.model.Pressure.State</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">record_a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp_b</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">record_b</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">identifier</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oralb.blesdk.model.Pressure" title="Link to this definition">#</a></dt>
+<dd><dl class="py class">
+<dt class="sig sig-object py" id="oralb.blesdk.model.Pressure.State">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">State</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oralb.blesdk.model.Pressure.State" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="oralb.blesdk.model.RTC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oralb.blesdk.model.</span></span><span class="sig-name descname"><span class="pre">RTC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epochMillis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">946684800000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oralb.blesdk.model.RTC" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="oralb.blesdk.model.RefillRemainder">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oralb.blesdk.model.</span></span><span class="sig-name descname"><span class="pre">RefillRemainder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#oralb.blesdk.model.RefillRemainder.State" title="oralb.blesdk.model.RefillRemainder.State"><span class="pre">oralb.blesdk.model.RefillRemainder.State</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">days_left</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">brushing_seconds_left</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oralb.blesdk.model.RefillRemainder" title="Link to this definition">#</a></dt>
+<dd><dl class="py class">
+<dt class="sig sig-object py" id="oralb.blesdk.model.RefillRemainder.State">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">State</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oralb.blesdk.model.RefillRemainder.State" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="oralb.blesdk.model.SensorData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oralb.blesdk.model.</span></span><span class="sig-name descname"><span class="pre">SensorData</span></span><a class="headerlink" href="#oralb.blesdk.model.SensorData" title="Link to this definition">#</a></dt>
+<dd><dl class="py class">
+<dt class="sig sig-object py" id="oralb.blesdk.model.SensorData.Data">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oralb.blesdk.model.SensorData.Data" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oralb.blesdk.model.SensorData.decode">
+<span class="sig-name descname"><span class="pre">decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parsed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#oralb.blesdk.model.SensorData.decode" title="Link to this definition">#</a></dt>
+<dd><p>Decode data using the wrapped _StructLike object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parsed</strong> – The parsed data to be decoded.</p></li>
+<li><p><strong>context</strong> – The current context.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The decoded data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="oralb.blesdk.model.SensorData.encode">
+<span class="sig-name descname"><span class="pre">encode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bytes</span></span></span><a class="headerlink" href="#oralb.blesdk.model.SensorData.encode" title="Link to this definition">#</a></dt>
+<dd><p>Encode data using the wrapped _StructLike object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>obj</strong> – The original data to be encoded.</p></li>
+<li><p><strong>context</strong> – The current context.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The encoded data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="oralb.blesdk.model.Smiley">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oralb.blesdk.model.</span></span><span class="sig-name descname"><span class="pre">Smiley</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">face</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#oralb.blesdk.model.Smiley.Face" title="oralb.blesdk.model.Smiley.Face"><span class="pre">oralb.blesdk.model.Smiley.Face</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oralb.blesdk.model.Smiley" title="Link to this definition">#</a></dt>
+<dd><dl class="py class">
+<dt class="sig sig-object py" id="oralb.blesdk.model.Smiley.Face">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Face</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oralb.blesdk.model.Smiley.Face" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="oralb.blesdk.model.Timezone">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oralb.blesdk.model.</span></span><span class="sig-name descname"><span class="pre">Timezone</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">zone</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oralb.blesdk.model.Timezone" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="oralb.blesdk.model.TongueTime">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oralb.blesdk.model.</span></span><span class="sig-name descname"><span class="pre">TongueTime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">duration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oralb.blesdk.model.TongueTime" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="oralb.blesdk.model.UserID">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">oralb.blesdk.model.</span></span><span class="sig-name descname"><span class="pre">UserID</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id_</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#oralb.blesdk.model.UserID" title="Link to this definition">#</a></dt>
+<dd><p>Characteristic representing a user ID.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="oralb.blesdk.model.make_uuid">
+<span class="sig-prename descclassname"><span class="pre">oralb.blesdk.model.</span></span><span class="sig-name descname"><span class="pre">make_uuid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#oralb.blesdk.model.make_uuid" title="Link to this definition">#</a></dt>
+<dd><p>Generates a uuid from the given short uuid</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="oralb.blesdk.model.register">
+<span class="sig-prename descclassname"><span class="pre">oralb.blesdk.model.</span></span><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#oralb.blesdk.model.register" title="Link to this definition">#</a></dt>
+<dd><p>Registers a new struct type to the given uuid</p>
+</dd></dl>
+
 <section id="metadata-structs">
 <h3>Metadata Structs<a class="headerlink" href="#metadata-structs" title="Link to this heading">#</a></h3>
 </section>
 </section>
-<section id="client">
-<h2>Client<a class="headerlink" href="#client" title="Link to this heading">#</a></h2>
+<section id="module-oralb.blesdk.client">
+<span id="client"></span><h2>Client<a class="headerlink" href="#module-oralb.blesdk.client" title="Link to this heading">#</a></h2>
 </section>
 </section>
 
@@ -266,12 +582,91 @@ source code instead.</p>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">BLE SDK</a><ul>
-<li><a class="reference internal" href="#advertisement">Advertisement</a></li>
-<li><a class="reference internal" href="#model-structs">Model Structs</a><ul>
+<li><a class="reference internal" href="#advertisement">Advertisement</a><ul>
+<li><a class="reference internal" href="#oralb.blesdk.BrushAdvertisement"><code class="docutils literal notranslate"><span class="pre">BrushAdvertisement</span></code></a><ul>
+<li><a class="reference internal" href="#oralb.blesdk.BrushAdvertisement.brush_mode"><code class="docutils literal notranslate"><span class="pre">BrushAdvertisement.brush_mode</span></code></a></li>
+<li><a class="reference internal" href="#oralb.blesdk.BrushAdvertisement.brush_progress"><code class="docutils literal notranslate"><span class="pre">BrushAdvertisement.brush_progress</span></code></a></li>
+<li><a class="reference internal" href="#oralb.blesdk.BrushAdvertisement.brush_time_min"><code class="docutils literal notranslate"><span class="pre">BrushAdvertisement.brush_time_min</span></code></a></li>
+<li><a class="reference internal" href="#oralb.blesdk.BrushAdvertisement.brush_time_sec"><code class="docutils literal notranslate"><span class="pre">BrushAdvertisement.brush_time_sec</span></code></a></li>
+<li><a class="reference internal" href="#oralb.blesdk.BrushAdvertisement.protocol"><code class="docutils literal notranslate"><span class="pre">BrushAdvertisement.protocol</span></code></a></li>
+<li><a class="reference internal" href="#oralb.blesdk.BrushAdvertisement.quadrant_completion"><code class="docutils literal notranslate"><span class="pre">BrushAdvertisement.quadrant_completion</span></code></a></li>
+<li><a class="reference internal" href="#oralb.blesdk.BrushAdvertisement.state"><code class="docutils literal notranslate"><span class="pre">BrushAdvertisement.state</span></code></a></li>
+<li><a class="reference internal" href="#oralb.blesdk.BrushAdvertisement.status"><code class="docutils literal notranslate"><span class="pre">BrushAdvertisement.status</span></code></a></li>
+<li><a class="reference internal" href="#oralb.blesdk.BrushAdvertisement.total_quadrants"><code class="docutils literal notranslate"><span class="pre">BrushAdvertisement.total_quadrants</span></code></a></li>
+<li><a class="reference internal" href="#oralb.blesdk.BrushAdvertisement.type"><code class="docutils literal notranslate"><span class="pre">BrushAdvertisement.type</span></code></a></li>
+<li><a class="reference internal" href="#oralb.blesdk.BrushAdvertisement.version"><code class="docutils literal notranslate"><span class="pre">BrushAdvertisement.version</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-oralb.blesdk.model">Model Structs</a><ul>
+<li><a class="reference internal" href="#oralb.blesdk.model.BatteryLevel"><code class="docutils literal notranslate"><span class="pre">BatteryLevel</span></code></a></li>
+<li><a class="reference internal" href="#oralb.blesdk.model.Button"><code class="docutils literal notranslate"><span class="pre">Button</span></code></a><ul>
+<li><a class="reference internal" href="#oralb.blesdk.model.Button.State"><code class="docutils literal notranslate"><span class="pre">Button.State</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#oralb.blesdk.model.CalibrationData"><code class="docutils literal notranslate"><span class="pre">CalibrationData</span></code></a></li>
+<li><a class="reference internal" href="#oralb.blesdk.model.Color"><code class="docutils literal notranslate"><span class="pre">Color</span></code></a></li>
+<li><a class="reference internal" href="#oralb.blesdk.model.Control"><code class="docutils literal notranslate"><span class="pre">Control</span></code></a><ul>
+<li><a class="reference internal" href="#oralb.blesdk.model.Control.DataRead"><code class="docutils literal notranslate"><span class="pre">Control.DataRead</span></code></a></li>
+<li><a class="reference internal" href="#oralb.blesdk.model.Control.METADATA"><code class="docutils literal notranslate"><span class="pre">Control.METADATA</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#oralb.blesdk.model.DashboardConfig"><code class="docutils literal notranslate"><span class="pre">DashboardConfig</span></code></a><ul>
+<li><a class="reference internal" href="#oralb.blesdk.model.DashboardConfig.Divider"><code class="docutils literal notranslate"><span class="pre">DashboardConfig.Divider</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#oralb.blesdk.model.DashboardData"><code class="docutils literal notranslate"><span class="pre">DashboardData</span></code></a><ul>
+<li><a class="reference internal" href="#oralb.blesdk.model.DashboardData.Status"><code class="docutils literal notranslate"><span class="pre">DashboardData.Status</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#oralb.blesdk.model.DeviceName"><code class="docutils literal notranslate"><span class="pre">DeviceName</span></code></a></li>
+<li><a class="reference internal" href="#oralb.blesdk.model.DeviceState"><code class="docutils literal notranslate"><span class="pre">DeviceState</span></code></a><ul>
+<li><a class="reference internal" href="#oralb.blesdk.model.DeviceState.State"><code class="docutils literal notranslate"><span class="pre">DeviceState.State</span></code></a></li>
+<li><a class="reference internal" href="#oralb.blesdk.model.DeviceState.SubState"><code class="docutils literal notranslate"><span class="pre">DeviceState.SubState</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#oralb.blesdk.model.GyroMotionData"><code class="docutils literal notranslate"><span class="pre">GyroMotionData</span></code></a></li>
+<li><a class="reference internal" href="#oralb.blesdk.model.HighResolutionMotionData"><code class="docutils literal notranslate"><span class="pre">HighResolutionMotionData</span></code></a></li>
+<li><a class="reference internal" href="#oralb.blesdk.model.MotionData"><code class="docutils literal notranslate"><span class="pre">MotionData</span></code></a></li>
+<li><a class="reference internal" href="#oralb.blesdk.model.OTACommand"><code class="docutils literal notranslate"><span class="pre">OTACommand</span></code></a><ul>
+<li><a class="reference internal" href="#oralb.blesdk.model.OTACommand.Command"><code class="docutils literal notranslate"><span class="pre">OTACommand.Command</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#oralb.blesdk.model.OTAPayload"><code class="docutils literal notranslate"><span class="pre">OTAPayload</span></code></a></li>
+<li><a class="reference internal" href="#oralb.blesdk.model.OTAState"><code class="docutils literal notranslate"><span class="pre">OTAState</span></code></a><ul>
+<li><a class="reference internal" href="#oralb.blesdk.model.OTAState.State"><code class="docutils literal notranslate"><span class="pre">OTAState.State</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#oralb.blesdk.model.OTATransferSize"><code class="docutils literal notranslate"><span class="pre">OTATransferSize</span></code></a></li>
+<li><a class="reference internal" href="#oralb.blesdk.model.Pressure"><code class="docutils literal notranslate"><span class="pre">Pressure</span></code></a><ul>
+<li><a class="reference internal" href="#oralb.blesdk.model.Pressure.State"><code class="docutils literal notranslate"><span class="pre">Pressure.State</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#oralb.blesdk.model.RTC"><code class="docutils literal notranslate"><span class="pre">RTC</span></code></a></li>
+<li><a class="reference internal" href="#oralb.blesdk.model.RefillRemainder"><code class="docutils literal notranslate"><span class="pre">RefillRemainder</span></code></a><ul>
+<li><a class="reference internal" href="#oralb.blesdk.model.RefillRemainder.State"><code class="docutils literal notranslate"><span class="pre">RefillRemainder.State</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#oralb.blesdk.model.SensorData"><code class="docutils literal notranslate"><span class="pre">SensorData</span></code></a><ul>
+<li><a class="reference internal" href="#oralb.blesdk.model.SensorData.Data"><code class="docutils literal notranslate"><span class="pre">SensorData.Data</span></code></a></li>
+<li><a class="reference internal" href="#oralb.blesdk.model.SensorData.decode"><code class="docutils literal notranslate"><span class="pre">SensorData.decode()</span></code></a></li>
+<li><a class="reference internal" href="#oralb.blesdk.model.SensorData.encode"><code class="docutils literal notranslate"><span class="pre">SensorData.encode()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#oralb.blesdk.model.Smiley"><code class="docutils literal notranslate"><span class="pre">Smiley</span></code></a><ul>
+<li><a class="reference internal" href="#oralb.blesdk.model.Smiley.Face"><code class="docutils literal notranslate"><span class="pre">Smiley.Face</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#oralb.blesdk.model.Timezone"><code class="docutils literal notranslate"><span class="pre">Timezone</span></code></a></li>
+<li><a class="reference internal" href="#oralb.blesdk.model.TongueTime"><code class="docutils literal notranslate"><span class="pre">TongueTime</span></code></a></li>
+<li><a class="reference internal" href="#oralb.blesdk.model.UserID"><code class="docutils literal notranslate"><span class="pre">UserID</span></code></a></li>
+<li><a class="reference internal" href="#oralb.blesdk.model.make_uuid"><code class="docutils literal notranslate"><span class="pre">make_uuid()</span></code></a></li>
+<li><a class="reference internal" href="#oralb.blesdk.model.register"><code class="docutils literal notranslate"><span class="pre">register()</span></code></a></li>
 <li><a class="reference internal" href="#metadata-structs">Metadata Structs</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#client">Client</a></li>
+<li><a class="reference internal" href="#module-oralb.blesdk.client">Client</a></li>
 </ul>
 </li>
 </ul>
