@@ -1,3 +1,4 @@
 caterpillar[all] @ git+https://github.com/MatrixEditor/caterpillar.git
 cryptography
 rich
+bleak
