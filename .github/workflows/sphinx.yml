@@ -24,7 +24,7 @@ jobs:
       - name: Build
         # Create .nojekyll file to disable Jekyll processing
         run: |
-          cd docs
+          cd Docs
           make html
           touch build/html/.nojekyll
 
@@ -32,4 +32,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs/build/html
+          publish_dir: Docs/build/html
