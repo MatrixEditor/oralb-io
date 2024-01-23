@@ -1,0 +1,956 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../../../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" />
+
+    <!-- Generated with Sphinx 7.2.6 and Furo 2023.09.10 -->
+        <title>oralb.blesdk.model - OralB-IO 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../index.html"><div class="brand">OralB-IO 0.1.0 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
+  
+  
+  <span class="sidebar-brand-text">OralB-IO 0.1.0 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage.html">CLI Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Examples</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../API/index.html">API Reference</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of API Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../API/blesdk.html">BLE SDK</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <h1>Source code for oralb.blesdk.model</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright (C) MatrixEditor 2023</span>
+<span class="c1">#</span>
+<span class="c1"># This program is free software: you can redistribute it and/or modify</span>
+<span class="c1"># it under the terms of the GNU General Public License as published by</span>
+<span class="c1"># the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1"># (at your option) any later version.</span>
+<span class="c1">#</span>
+<span class="c1"># This program is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1"># GNU General Public License for more details.</span>
+<span class="c1">#</span>
+<span class="c1"># You should have received a copy of the GNU General Public License</span>
+<span class="c1"># along with this program.  If not, see &lt;https://www.gnu.org/licenses/&gt;.</span>
+<span class="kn">import</span> <span class="nn">enum</span>
+
+<span class="kn">from</span> <span class="nn">caterpillar.shortcuts</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">caterpillar.fields</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">caterpillar.exception</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">BASE_UUID</span> <span class="o">=</span> <span class="s2">&quot;A0F0XXXX-5047-4D53-8208-4F72616C2D42&quot;</span>
+
+<span class="c1"># struct configuration</span>
+<span class="n">be</span> <span class="o">=</span> <span class="n">BigEndian</span>
+<span class="n">le</span> <span class="o">=</span> <span class="n">LittleEndian</span>
+<span class="n">opt</span><span class="o">.</span><span class="n">set_struct_flags</span><span class="p">(</span><span class="n">opt</span><span class="o">.</span><span class="n">S_REPLACE_TYPES</span><span class="p">)</span>
+
+<span class="c1">#: all runtime characteristics will be mapped to their corresponding</span>
+<span class="c1">#: struct type.</span>
+<span class="n">__characteristics__</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{}</span>
+
+
+<div class="viewcode-block" id="make_uuid">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.make_uuid">[docs]</a>
+<span class="k">def</span> <span class="nf">make_uuid</span><span class="p">(</span><span class="n">cid</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generates a uuid from the given short uuid&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">BASE_UUID</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;XXXX&quot;</span><span class="p">,</span> <span class="n">cid</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="register">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.register">[docs]</a>
+<span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="n">cid</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Registers a new struct type to the given uuid&quot;&quot;&quot;</span>
+    <span class="n">__characteristics__</span><span class="p">[</span><span class="n">cid</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span></div>
+
+
+
+<span class="k">def</span> <span class="nf">characteristic</span><span class="p">(</span><span class="n">cid</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">wrap</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="n">register</span><span class="p">(</span><span class="n">make_uuid</span><span class="p">(</span><span class="n">cid</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cid</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span> <span class="k">else</span> <span class="n">cid</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="s2">&quot;__cname__&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">cls</span>
+
+    <span class="k">return</span> <span class="n">wrap</span>
+
+
+<span class="n">S_CAPABILITIES</span> <span class="o">=</span> <span class="n">make_uuid</span><span class="p">(</span><span class="s2">&quot;FF00&quot;</span><span class="p">)</span>
+<span class="n">CH_DEVICE_ID</span> <span class="o">=</span> <span class="n">make_uuid</span><span class="p">(</span><span class="s2">&quot;FF01&quot;</span><span class="p">)</span>
+<span class="n">CH_DEVICE_INFO</span> <span class="o">=</span> <span class="n">make_uuid</span><span class="p">(</span><span class="s2">&quot;FF02&quot;</span><span class="p">)</span>
+<span class="n">CH_USER_ID</span> <span class="o">=</span> <span class="n">make_uuid</span><span class="p">(</span><span class="s2">&quot;FF03&quot;</span><span class="p">)</span>
+<span class="n">CH_DEVICE_STATE</span> <span class="o">=</span> <span class="n">make_uuid</span><span class="p">(</span><span class="s2">&quot;FF04&quot;</span><span class="p">)</span>
+<span class="n">CH_BATTERY_LEVEL</span> <span class="o">=</span> <span class="n">make_uuid</span><span class="p">(</span><span class="s2">&quot;FF05&quot;</span><span class="p">)</span>
+<span class="n">CH_BUTTON</span> <span class="o">=</span> <span class="n">make_uuid</span><span class="p">(</span><span class="s2">&quot;FF06&quot;</span><span class="p">)</span>
+<span class="n">CH_BRUSHING_MODE</span> <span class="o">=</span> <span class="n">make_uuid</span><span class="p">(</span><span class="s2">&quot;FF07&quot;</span><span class="p">)</span>
+<span class="n">CH_BRUSHING_TIME</span> <span class="o">=</span> <span class="n">make_uuid</span><span class="p">(</span><span class="s2">&quot;FF08&quot;</span><span class="p">)</span>
+<span class="n">CH_QUADRANT</span> <span class="o">=</span> <span class="n">make_uuid</span><span class="p">(</span><span class="s2">&quot;FF09&quot;</span><span class="p">)</span>
+<span class="n">CH_SMILEY</span> <span class="o">=</span> <span class="n">make_uuid</span><span class="p">(</span><span class="s2">&quot;FF0A&quot;</span><span class="p">)</span>
+<span class="n">CH_PRESSURE</span> <span class="o">=</span> <span class="n">make_uuid</span><span class="p">(</span><span class="s2">&quot;FF0B&quot;</span><span class="p">)</span>
+<span class="c1"># ff0c (Handle: 55): &#39;Cache&#39; [&#39;read&#39;, &#39;write&#39;, &#39;notify&#39;] (needs AUTH)</span>
+<span class="n">CH_SENSOR_DATA</span> <span class="o">=</span> <span class="n">make_uuid</span><span class="p">(</span><span class="s2">&quot;FF0D&quot;</span><span class="p">)</span>
+
+<span class="n">S_CONFIG</span> <span class="o">=</span> <span class="n">make_uuid</span><span class="p">(</span><span class="s2">&quot;FF20&quot;</span><span class="p">)</span>
+<span class="n">CH_CONTROL</span> <span class="o">=</span> <span class="n">make_uuid</span><span class="p">(</span><span class="s2">&quot;FF21&quot;</span><span class="p">)</span>
+<span class="n">CH_RTC</span> <span class="o">=</span> <span class="n">make_uuid</span><span class="p">(</span><span class="s2">&quot;FF22&quot;</span><span class="p">)</span>
+<span class="n">CH_TIMEZONE</span> <span class="o">=</span> <span class="n">make_uuid</span><span class="p">(</span><span class="s2">&quot;FF23&quot;</span><span class="p">)</span>
+<span class="n">CH_BRUSH_MODES</span> <span class="o">=</span> <span class="n">make_uuid</span><span class="p">(</span><span class="s2">&quot;FF25&quot;</span><span class="p">)</span>
+<span class="c1"># ff26 (Handle: 77): &#39;Quadrant Times&#39; [&#39;read&#39;, &#39;write&#39;]</span>
+<span class="n">CH_TONGUE_TIME</span> <span class="o">=</span> <span class="n">make_uuid</span><span class="p">(</span><span class="s2">&quot;FF27&quot;</span><span class="p">)</span>
+<span class="n">CH_SESSION_DATA</span> <span class="o">=</span> <span class="n">make_uuid</span><span class="p">(</span><span class="s2">&quot;FF29&quot;</span><span class="p">)</span>
+<span class="c1"># ff2a (Handle: 83): &#39;Flight Mode&#39; [&#39;read&#39;, &#39;write&#39;]</span>
+<span class="n">CH_MY_COLOR</span> <span class="o">=</span> <span class="n">make_uuid</span><span class="p">(</span><span class="s2">&quot;FF2B&quot;</span><span class="p">)</span>
+<span class="n">CH_DASHBOARD_CONFIG</span> <span class="o">=</span> <span class="n">make_uuid</span><span class="p">(</span><span class="s2">&quot;FF2C&quot;</span><span class="p">)</span>
+<span class="n">CH_REFILL_REMAINDER</span> <span class="o">=</span> <span class="n">make_uuid</span><span class="p">(</span><span class="s2">&quot;FF2D&quot;</span><span class="p">)</span>
+
+<span class="n">S_OTA</span> <span class="o">=</span> <span class="n">make_uuid</span><span class="p">(</span><span class="s2">&quot;FF80&quot;</span><span class="p">)</span>
+<span class="n">CH_OTA_COMMAND</span> <span class="o">=</span> <span class="n">make_uuid</span><span class="p">(</span><span class="s2">&quot;FF81&quot;</span><span class="p">)</span>
+<span class="n">CH_OTA_PAYLOAD</span> <span class="o">=</span> <span class="n">make_uuid</span><span class="p">(</span><span class="s2">&quot;FF82&quot;</span><span class="p">)</span>
+<span class="c1"># ff83 (Handle: 102): &#39;OTA Payload 2&#39;</span>
+<span class="n">CH_OTA_STATE</span> <span class="o">=</span> <span class="n">make_uuid</span><span class="p">(</span><span class="s2">&quot;FF84&quot;</span><span class="p">)</span>
+<span class="n">CH_OTA_TRANSFER_SIZE</span> <span class="o">=</span> <span class="n">make_uuid</span><span class="p">(</span><span class="s2">&quot;FF85&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="UserID">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.UserID">[docs]</a>
+<span class="nd">@characteristic</span><span class="p">(</span><span class="n">CH_USER_ID</span><span class="p">,</span> <span class="s2">&quot;user_id&quot;</span><span class="p">)</span>
+<span class="nd">@struct</span><span class="p">(</span><span class="n">kw_only</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">UserID</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Characteristic representing a user ID.&quot;&quot;&quot;</span>
+
+    <span class="n">id_</span><span class="p">:</span> <span class="n">uint8</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The user ID.&quot;&quot;&quot;</span></div>
+
+
+
+<div class="viewcode-block" id="Color">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.Color">[docs]</a>
+<span class="nd">@characteristic</span><span class="p">(</span><span class="n">CH_MY_COLOR</span><span class="p">,</span> <span class="s2">&quot;my_color&quot;</span><span class="p">)</span>
+<span class="nd">@struct</span>
+<span class="k">class</span> <span class="nc">Color</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Characteristic representing a color.&quot;&quot;&quot;</span>
+
+    <span class="c1">#: The red component of the color.</span>
+    <span class="n">red</span><span class="p">:</span> <span class="n">uint8</span>
+
+    <span class="c1">#: The green component of the color.</span>
+    <span class="n">green</span><span class="p">:</span> <span class="n">uint8</span>
+
+    <span class="c1">#: The blue component of the color.</span>
+    <span class="n">blue</span><span class="p">:</span> <span class="n">uint8</span>
+
+    <span class="c1">#: The identifier of the color.</span>
+    <span class="n">identifier</span><span class="p">:</span> <span class="n">uint8</span></div>
+
+
+
+<div class="viewcode-block" id="DeviceState">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.DeviceState">[docs]</a>
+<span class="nd">@characteristic</span><span class="p">(</span><span class="n">CH_DEVICE_STATE</span><span class="p">,</span> <span class="s2">&quot;device_state&quot;</span><span class="p">)</span>
+<span class="nd">@struct</span><span class="p">(</span><span class="n">kw_only</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">DeviceState</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents the state of a device.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="DeviceState.State">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.DeviceState.State">[docs]</a>
+    <span class="k">class</span> <span class="nc">State</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">IntEnum</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Enumeration representing the main states of the device.&quot;&quot;&quot;</span>
+
+        <span class="n">__struct__</span> <span class="o">=</span> <span class="n">uint8</span>
+        <span class="n">UNKNOWN</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">INIT</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">IDLE</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="n">RUN</span> <span class="o">=</span> <span class="mi">3</span>
+        <span class="n">CHARGE</span> <span class="o">=</span> <span class="mi">4</span>
+        <span class="n">SETUP</span> <span class="o">=</span> <span class="mi">5</span>
+        <span class="n">FLIGHT_MENU</span> <span class="o">=</span> <span class="mi">6</span>
+        <span class="n">CHARGE_FORBIDDEN</span> <span class="o">=</span> <span class="mi">7</span>
+        <span class="n">PRE_RUN</span> <span class="o">=</span> <span class="mi">8</span>
+        <span class="n">POST_RUN</span> <span class="o">=</span> <span class="mi">9</span>
+        <span class="n">FINAL_TEST</span> <span class="o">=</span> <span class="mi">113</span>
+        <span class="n">PCB_TEST</span> <span class="o">=</span> <span class="mi">114</span>
+        <span class="n">SLEEP</span> <span class="o">=</span> <span class="mi">115</span>
+        <span class="n">TRANSPORT</span> <span class="o">=</span> <span class="mi">116</span>
+        <span class="n">CALIBRATION_TEST</span> <span class="o">=</span> <span class="mi">117</span></div>
+
+
+<div class="viewcode-block" id="DeviceState.SubState">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.DeviceState.SubState">[docs]</a>
+    <span class="k">class</span> <span class="nc">SubState</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">IntEnum</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Enumeration representing the sub-states of the device.&quot;&quot;&quot;</span>
+
+        <span class="n">__struct__</span> <span class="o">=</span> <span class="n">uint8</span>
+        <span class="n">UNKNOWN</span> <span class="o">=</span> <span class="mh">0xFF</span>
+        <span class="n">TRANSPORT_DISABLED_DEACTIVATE_TIMER_DISABLED</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">TRANSPORT_ENABLED_DEACTIVATE_TIMER_DISABLED</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">TRANSPORT_ENABLED_DEACTIVATE_TIMER_ENABLED</span> <span class="o">=</span> <span class="mi">2</span></div>
+
+
+    <span class="c1">#: The main state of the device.</span>
+    <span class="n">state</span><span class="p">:</span> <span class="n">State</span>
+
+    <span class="c1">#: The sub-state of the device.</span>
+    <span class="n">sub_state</span><span class="p">:</span> <span class="n">SubState</span></div>
+
+
+
+<div class="viewcode-block" id="RTC">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.RTC">[docs]</a>
+<span class="nd">@characteristic</span><span class="p">(</span><span class="n">CH_RTC</span><span class="p">,</span> <span class="s2">&quot;rtc&quot;</span><span class="p">)</span>
+<span class="nd">@struct</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="n">LittleEndian</span><span class="p">,</span> <span class="n">kw_only</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">RTC</span><span class="p">:</span>
+    <span class="n">epochMillis</span><span class="p">:</span> <span class="n">uint32</span> <span class="o">=</span> <span class="mi">946684800000</span></div>
+
+
+
+<div class="viewcode-block" id="Smiley">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.Smiley">[docs]</a>
+<span class="nd">@characteristic</span><span class="p">(</span><span class="n">CH_SMILEY</span><span class="p">,</span> <span class="s2">&quot;smiley&quot;</span><span class="p">)</span>
+<span class="nd">@struct</span><span class="p">(</span><span class="n">kw_only</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Smiley</span><span class="p">:</span>
+<div class="viewcode-block" id="Smiley.Face">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.Smiley.Face">[docs]</a>
+    <span class="k">class</span> <span class="nc">Face</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">IntEnum</span><span class="p">):</span>
+        <span class="n">__struct__</span> <span class="o">=</span> <span class="n">uint8</span>
+
+        <span class="n">OFF</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">STANDARD</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">SPECIAL2</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="n">SPECIAL3</span> <span class="o">=</span> <span class="mi">3</span>
+        <span class="n">SPECIAL4</span> <span class="o">=</span> <span class="mi">4</span>
+        <span class="n">SPECIAL5</span> <span class="o">=</span> <span class="mi">5</span>
+        <span class="n">SPECIAL6</span> <span class="o">=</span> <span class="mi">6</span>
+        <span class="n">SPECIAL7</span> <span class="o">=</span> <span class="mi">7</span></div>
+
+
+    <span class="n">face</span><span class="p">:</span> <span class="n">Face</span></div>
+
+
+
+<div class="viewcode-block" id="Timezone">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.Timezone">[docs]</a>
+<span class="nd">@characteristic</span><span class="p">(</span><span class="n">CH_TIMEZONE</span><span class="p">,</span> <span class="s2">&quot;timezone&quot;</span><span class="p">)</span>
+<span class="nd">@struct</span><span class="p">(</span><span class="n">kw_only</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Timezone</span><span class="p">:</span>
+    <span class="c1"># This struct has to be validated!</span>
+    <span class="n">zone</span><span class="p">:</span> <span class="n">uint8</span></div>
+
+
+
+<div class="viewcode-block" id="TongueTime">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.TongueTime">[docs]</a>
+<span class="nd">@characteristic</span><span class="p">(</span><span class="n">CH_TONGUE_TIME</span><span class="p">,</span> <span class="s2">&quot;tongue_time&quot;</span><span class="p">)</span>
+<span class="nd">@struct</span><span class="p">(</span><span class="n">kw_only</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">TongueTime</span><span class="p">:</span>
+    <span class="c1"># This struct has to be validated!</span>
+    <span class="n">duration</span><span class="p">:</span> <span class="n">uint8</span></div>
+
+
+
+<div class="viewcode-block" id="OTACommand">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.OTACommand">[docs]</a>
+<span class="nd">@characteristic</span><span class="p">(</span><span class="n">CH_OTA_COMMAND</span><span class="p">,</span> <span class="s2">&quot;ota_command&quot;</span><span class="p">)</span>
+<span class="nd">@struct</span><span class="p">(</span><span class="n">kw_only</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">OTACommand</span><span class="p">:</span>
+<div class="viewcode-block" id="OTACommand.Command">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.OTACommand.Command">[docs]</a>
+    <span class="k">class</span> <span class="nc">Command</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">IntEnum</span><span class="p">):</span>
+        <span class="n">__struct__</span> <span class="o">=</span> <span class="n">uint8</span>
+
+        <span class="n">STANDBY</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">INITIALIZE</span> <span class="o">=</span> <span class="mi">17</span>
+        <span class="n">FINISH_UPLOAD</span> <span class="o">=</span> <span class="mi">19</span>
+        <span class="n">FLASH_FIRMWARE</span> <span class="o">=</span> <span class="mi">26</span>
+        <span class="n">RESET</span> <span class="o">=</span> <span class="mi">27</span>
+        <span class="n">ERROR</span> <span class="o">=</span> <span class="mi">30</span></div>
+
+
+    <span class="n">command</span><span class="p">:</span> <span class="n">Command</span></div>
+
+
+
+<div class="viewcode-block" id="OTAPayload">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.OTAPayload">[docs]</a>
+<span class="nd">@characteristic</span><span class="p">(</span><span class="n">CH_OTA_PAYLOAD</span><span class="p">,</span> <span class="s2">&quot;ota_payload&quot;</span><span class="p">)</span>
+<span class="nd">@struct</span><span class="p">(</span><span class="n">kw_only</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">OTAPayload</span><span class="p">:</span>
+    <span class="n">payload</span><span class="p">:</span> <span class="n">Memory</span><span class="p">(</span><span class="o">...</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="OTAState">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.OTAState">[docs]</a>
+<span class="nd">@characteristic</span><span class="p">(</span><span class="n">CH_OTA_STATE</span><span class="p">,</span> <span class="s2">&quot;ota_state&quot;</span><span class="p">)</span>
+<span class="nd">@struct</span><span class="p">(</span><span class="n">kw_only</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">OTAState</span><span class="p">:</span>
+<div class="viewcode-block" id="OTAState.State">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.OTAState.State">[docs]</a>
+    <span class="k">class</span> <span class="nc">State</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">IntEnum</span><span class="p">):</span>
+        <span class="n">__struct__</span> <span class="o">=</span> <span class="n">uint8</span>
+
+        <span class="n">STANDBY</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">APP_INITIALIZED</span> <span class="o">=</span> <span class="mi">17</span>
+        <span class="n">APP_VERIFY_SIZE</span> <span class="o">=</span> <span class="mi">18</span>
+        <span class="n">APP_READY_FOR_PAYLOAD</span> <span class="o">=</span> <span class="mi">19</span>
+        <span class="n">APP_UNKNOWN_PAUSE</span> <span class="o">=</span> <span class="mi">20</span>
+        <span class="n">APP_COMPLETED</span> <span class="o">=</span> <span class="mi">21</span>
+        <span class="n">APP_COMPLETED_NOT_CHARGED</span> <span class="o">=</span> <span class="mi">22</span>
+        <span class="n">APP_ERROR</span> <span class="o">=</span> <span class="mi">30</span>
+        <span class="n">ERROR</span> <span class="o">=</span> <span class="mh">0xEE</span>
+        <span class="n">FLASH_STARTED</span> <span class="o">=</span> <span class="mh">0xAA</span>
+        <span class="n">FLASH_CONFIRMED</span> <span class="o">=</span> <span class="mh">0xFF</span></div>
+
+
+    <span class="n">state</span><span class="p">:</span> <span class="n">State</span></div>
+
+
+
+<div class="viewcode-block" id="OTATransferSize">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.OTATransferSize">[docs]</a>
+<span class="nd">@characteristic</span><span class="p">(</span><span class="n">CH_OTA_TRANSFER_SIZE</span><span class="p">,</span> <span class="s2">&quot;ota_transfer_size&quot;</span><span class="p">)</span>
+<span class="nd">@struct</span><span class="p">(</span><span class="n">kw_only</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">OTATransferSize</span><span class="p">:</span>
+    <span class="c1"># This struct has to be validated!</span>
+    <span class="n">value</span><span class="p">:</span> <span class="n">uint32</span></div>
+
+
+
+<div class="viewcode-block" id="Pressure">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.Pressure">[docs]</a>
+<span class="nd">@characteristic</span><span class="p">(</span><span class="n">CH_PRESSURE</span><span class="p">,</span> <span class="s2">&quot;pressure&quot;</span><span class="p">)</span>
+<span class="nd">@struct</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="n">LittleEndian</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Pressure</span><span class="p">:</span>
+    <span class="c1"># NOTE: only for versions &gt;= 6</span>
+<div class="viewcode-block" id="Pressure.State">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.Pressure.State">[docs]</a>
+    <span class="k">class</span> <span class="nc">State</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">IntEnum</span><span class="p">):</span>
+        <span class="n">__struct__</span> <span class="o">=</span> <span class="n">uint8</span>
+
+        <span class="n">LOW_PRESSURE</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">NORMAL_PRESSURE</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">HIGH_PRESSURE</span> <span class="o">=</span> <span class="mi">2</span></div>
+
+
+    <span class="n">state</span><span class="p">:</span> <span class="n">State</span>
+    <span class="n">timestamp_a</span><span class="p">:</span> <span class="n">uint16</span>
+    <span class="n">record_a</span><span class="p">:</span> <span class="n">uint16</span>
+    <span class="n">timestamp_b</span><span class="p">:</span> <span class="n">uint16</span>
+    <span class="n">record_b</span><span class="p">:</span> <span class="n">uint16</span>
+    <span class="n">identifier</span><span class="p">:</span> <span class="n">uint8</span></div>
+
+
+
+<div class="viewcode-block" id="RefillRemainder">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.RefillRemainder">[docs]</a>
+<span class="nd">@characteristic</span><span class="p">(</span><span class="n">CH_REFILL_REMAINDER</span><span class="p">,</span> <span class="s2">&quot;refill_remainder&quot;</span><span class="p">)</span>
+<span class="nd">@struct</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="n">LittleEndian</span><span class="p">,</span> <span class="n">kw_only</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">RefillRemainder</span><span class="p">:</span>
+<div class="viewcode-block" id="RefillRemainder.State">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.RefillRemainder.State">[docs]</a>
+    <span class="k">class</span> <span class="nc">State</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">IntEnum</span><span class="p">):</span>
+        <span class="n">__struct__</span> <span class="o">=</span> <span class="n">uint8</span>
+
+        <span class="n">SNOOZE</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="n">RESET</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">ON</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">OFF</span> <span class="o">=</span> <span class="mh">0xFF</span>
+        <span class="n">INTERVAL</span> <span class="o">=</span> <span class="mh">0xFE</span></div>
+
+
+    <span class="n">state</span><span class="p">:</span> <span class="n">State</span>
+    <span class="n">days_left</span><span class="p">:</span> <span class="n">uint16</span>
+    <span class="n">brushing_seconds_left</span><span class="p">:</span> <span class="n">uint16</span></div>
+
+
+
+<div class="viewcode-block" id="DashboardConfig">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.DashboardConfig">[docs]</a>
+<span class="nd">@characteristic</span><span class="p">(</span><span class="n">CH_DASHBOARD_CONFIG</span><span class="p">,</span> <span class="s2">&quot;dashboard&quot;</span><span class="p">)</span>
+<span class="nd">@struct</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="n">LittleEndian</span><span class="p">,</span> <span class="n">kw_only</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">DashboardConfig</span><span class="p">:</span>
+<div class="viewcode-block" id="DashboardConfig.Divider">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.DashboardConfig.Divider">[docs]</a>
+    <span class="k">class</span> <span class="nc">Divider</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">IntEnum</span><span class="p">):</span>
+        <span class="n">__struct__</span> <span class="o">=</span> <span class="n">uint8</span>
+        <span class="n">FULL_RESOLUTION</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">HALF_RESOLUTION</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="n">QUARTER_RESOLUTION</span> <span class="o">=</span> <span class="mi">4</span></div>
+
+
+    <span class="n">session_id</span><span class="p">:</span> <span class="n">uint16</span>
+    <span class="n">divider</span><span class="p">:</span> <span class="n">Divider</span></div>
+
+
+
+<div class="viewcode-block" id="Button">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.Button">[docs]</a>
+<span class="nd">@characteristic</span><span class="p">(</span><span class="n">CH_BUTTON</span><span class="p">,</span> <span class="s2">&quot;button&quot;</span><span class="p">)</span>
+<span class="nd">@struct</span><span class="p">(</span><span class="n">kw_only</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Button</span><span class="p">:</span>
+<div class="viewcode-block" id="Button.State">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.Button.State">[docs]</a>
+    <span class="k">class</span> <span class="nc">State</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">IntEnum</span><span class="p">):</span>
+        <span class="n">__struct__</span> <span class="o">=</span> <span class="n">uint8</span>
+        <span class="n">UNKNOWN</span> <span class="o">=</span> <span class="mh">0xFF</span>
+        <span class="n">NOTHING_PRESSED</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">POWER_PRESSED</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">MODE_PRESSED</span> <span class="o">=</span> <span class="mi">2</span></div>
+
+
+    <span class="n">state</span><span class="p">:</span> <span class="n">State</span>  <span class="c1">#</span></div>
+
+
+
+<div class="viewcode-block" id="BatteryLevel">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.BatteryLevel">[docs]</a>
+<span class="nd">@characteristic</span><span class="p">(</span><span class="n">CH_BATTERY_LEVEL</span><span class="p">,</span> <span class="s2">&quot;battery_level&quot;</span><span class="p">)</span>
+<span class="nd">@struct</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="n">LittleEndian</span><span class="p">,</span> <span class="n">kw_only</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">BatteryLevel</span><span class="p">:</span>
+    <span class="n">level</span><span class="p">:</span> <span class="n">uint8</span>
+    <span class="k">with</span> <span class="n">ctx</span><span class="o">.</span><span class="n">_root</span><span class="o">.</span><span class="n">protocol</span> <span class="o">&gt;=</span> <span class="mi">6</span><span class="p">:</span>
+        <span class="n">seconds_left</span><span class="p">:</span> <span class="n">uint16</span>
+
+    <span class="k">with</span> <span class="n">ctx</span><span class="o">.</span><span class="n">_root</span><span class="o">.</span><span class="n">protocol</span> <span class="o">&gt;=</span> <span class="mi">8</span><span class="p">:</span>
+        <span class="n">milli_volts</span><span class="p">:</span> <span class="n">uint16</span>
+        <span class="n">milli_amperes</span><span class="p">:</span> <span class="n">uint16</span>
+        <span class="n">temperature</span><span class="p">:</span> <span class="n">int8</span>
+        <span class="n">avail_soc</span><span class="p">:</span> <span class="n">uint8</span>
+        <span class="c1"># dischargeCapacityMilliAmpereSeconds</span>
+        <span class="n">dcmas</span><span class="p">:</span> <span class="n">uint32</span>
+        <span class="c1"># currentConditionRemainingCapacityMilliAmpereSeconds</span>
+        <span class="n">rcmas</span><span class="p">:</span> <span class="n">uint32</span>
+        <span class="n">soc_state</span><span class="p">:</span> <span class="n">uint8</span></div>
+
+
+
+<span class="c1"># default GATT characteristics</span>
+<div class="viewcode-block" id="DeviceName">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.DeviceName">[docs]</a>
+<span class="nd">@characteristic</span><span class="p">(</span><span class="s2">&quot;00002a00-0000-1000-8000-00805f9b34fb&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">)</span>
+<span class="nd">@struct</span><span class="p">(</span><span class="n">kw_only</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">DeviceName</span><span class="p">:</span>
+    <span class="n">text</span><span class="p">:</span> <span class="n">String</span><span class="p">(</span><span class="o">...</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="GyroMotionData">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.GyroMotionData">[docs]</a>
+<span class="nd">@struct</span><span class="p">(</span><span class="n">kw_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">LittleEndian</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">GyroMotionData</span><span class="p">:</span>
+    <span class="n">timestamp</span><span class="p">:</span> <span class="n">uint16</span>
+    <span class="n">gyro_x</span><span class="p">:</span> <span class="n">int8</span>
+    <span class="n">gyro_y</span><span class="p">:</span> <span class="n">int8</span>
+    <span class="n">gyro_z</span><span class="p">:</span> <span class="n">int8</span>
+    <span class="n">motion_x</span><span class="p">:</span> <span class="n">int8</span>
+    <span class="n">motion_y</span><span class="p">:</span> <span class="n">int8</span>
+    <span class="n">motion_z</span><span class="p">:</span> <span class="n">int8</span></div>
+
+
+
+<div class="viewcode-block" id="HighResolutionMotionData">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.HighResolutionMotionData">[docs]</a>
+<span class="nd">@struct</span><span class="p">(</span><span class="n">kw_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">LittleEndian</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">HighResolutionMotionData</span><span class="p">:</span>
+    <span class="n">motion_x</span><span class="p">:</span> <span class="n">int16</span>
+    <span class="n">motion_y</span><span class="p">:</span> <span class="n">int16</span>
+    <span class="n">motion_z</span><span class="p">:</span> <span class="n">int16</span></div>
+
+
+
+<div class="viewcode-block" id="MotionData">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.MotionData">[docs]</a>
+<span class="nd">@struct</span><span class="p">(</span><span class="n">kw_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">LittleEndian</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">MotionData</span><span class="p">:</span>
+    <span class="n">timestamp</span><span class="p">:</span> <span class="n">uint16</span>
+    <span class="n">motion_x</span><span class="p">:</span> <span class="n">int8</span>
+    <span class="n">motion_y</span><span class="p">:</span> <span class="n">int8</span>
+    <span class="n">motion_z</span><span class="p">:</span> <span class="n">int8</span></div>
+
+
+
+<div class="viewcode-block" id="CalibrationData">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.CalibrationData">[docs]</a>
+<span class="nd">@struct</span><span class="p">(</span><span class="n">kw_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">LittleEndian</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">CalibrationData</span><span class="p">:</span>
+    <span class="n">calibration_x</span><span class="p">:</span> <span class="n">int16</span>
+    <span class="n">calibration_y</span><span class="p">:</span> <span class="n">int16</span>
+    <span class="n">calibration_z</span><span class="p">:</span> <span class="n">int16</span></div>
+
+
+
+<div class="viewcode-block" id="DashboardData">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.DashboardData">[docs]</a>
+<span class="nd">@struct</span><span class="p">(</span><span class="n">kw_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">LittleEndian</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">DashboardData</span><span class="p">:</span>
+<div class="viewcode-block" id="DashboardData.Status">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.DashboardData.Status">[docs]</a>
+    <span class="k">class</span> <span class="nc">Status</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">IntEnum</span><span class="p">):</span>
+        <span class="n">SESSION_ID_INVALID</span> <span class="o">=</span> <span class="mh">0xFF</span> <span class="o">-</span> <span class="mi">16</span>
+        <span class="n">FIRST_PACKAGE</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">PACKAGES_PENDING</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="n">LAST_PACKAGE</span> <span class="o">=</span> <span class="mi">8</span></div>
+
+
+    <span class="n">status</span><span class="p">:</span> <span class="n">Enum</span><span class="p">(</span><span class="n">Status</span><span class="p">,</span> <span class="n">uint8</span><span class="p">)</span> <span class="o">@</span> <span class="mi">16</span>
+    <span class="c1"># To keep CLI parser building simple, we do NOT include</span>
+    <span class="c1"># a nested struct here</span>
+    <span class="n">timestamp</span><span class="p">:</span> <span class="n">uint16</span>
+    <span class="n">gyro_x</span><span class="p">:</span> <span class="n">int8</span>
+    <span class="n">gyro_y</span><span class="p">:</span> <span class="n">int8</span>
+    <span class="n">gyro_z</span><span class="p">:</span> <span class="n">int8</span>
+    <span class="n">motion_x</span><span class="p">:</span> <span class="n">int8</span>
+    <span class="n">motion_y</span><span class="p">:</span> <span class="n">int8</span>
+    <span class="n">motion_z</span><span class="p">:</span> <span class="n">int8</span></div>
+
+
+
+<div class="viewcode-block" id="SensorData">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.SensorData">[docs]</a>
+<span class="nd">@characteristic</span><span class="p">(</span><span class="n">CH_SENSOR_DATA</span><span class="p">,</span> <span class="s2">&quot;sensor_data&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">SensorData</span><span class="p">(</span><span class="n">Transformer</span><span class="p">):</span>
+    <span class="c1"># This field is only used when preparing the parser</span>
+    <span class="c1"># for the CLI.</span>
+    <span class="n">__models__</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;gyro&quot;</span><span class="p">:</span> <span class="n">GyroMotionData</span><span class="p">,</span>
+        <span class="s2">&quot;motion&quot;</span><span class="p">:</span> <span class="n">MotionData</span><span class="p">,</span>
+        <span class="s2">&quot;high-resolution&quot;</span><span class="p">:</span> <span class="n">HighResolutionMotionData</span><span class="p">,</span>
+        <span class="s2">&quot;calibration&quot;</span><span class="p">:</span> <span class="n">CalibrationData</span><span class="p">,</span>
+        <span class="s2">&quot;dashboard&quot;</span><span class="p">:</span> <span class="n">DashboardData</span><span class="p">,</span>
+    <span class="p">}</span>
+
+<div class="viewcode-block" id="SensorData.Data">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.SensorData.Data">[docs]</a>
+    <span class="k">class</span> <span class="nc">Data</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">IntEnum</span><span class="p">):</span>
+        <span class="n">SPECIAL</span> <span class="o">=</span> <span class="mh">0xFF</span> <span class="o">-</span> <span class="mi">127</span>
+        <span class="n">HIGH_RESOLUTION</span> <span class="o">=</span> <span class="mi">8</span>
+        <span class="n">CALIBRATION</span> <span class="o">=</span> <span class="mi">7</span>
+        <span class="n">DASHBOARD</span> <span class="o">=</span> <span class="mi">32</span>
+        <span class="n">COMINO</span> <span class="o">=</span> <span class="mi">16</span></div>
+
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">Bytes</span><span class="p">(</span><span class="o">...</span><span class="p">))</span>
+
+<div class="viewcode-block" id="SensorData.decode">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.SensorData.decode">[docs]</a>
+    <span class="k">def</span> <span class="nf">decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parsed</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">parsed</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">20</span><span class="p">:</span>
+            <span class="c1"># The parsed data must be 20 bytes</span>
+            <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Expected motion data of length 20 - got </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">parsed</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">context</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">parsed</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">SensorData</span><span class="o">.</span><span class="n">Data</span><span class="o">.</span><span class="n">SPECIAL</span><span class="p">:</span>
+            <span class="c1"># Default motion data (takes up all the space)</span>
+            <span class="k">return</span> <span class="n">unpack</span><span class="p">(</span><span class="n">MotionData</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">parsed</span><span class="p">)</span>
+
+        <span class="k">match</span> <span class="n">parsed</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]:</span>
+            <span class="k">case</span> <span class="n">SensorData</span><span class="o">.</span><span class="n">Data</span><span class="o">.</span><span class="n">COMINO</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">unpack</span><span class="p">(</span><span class="n">GyroMotionData</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">parsed</span><span class="p">)</span>
+            <span class="k">case</span> <span class="n">SensorData</span><span class="o">.</span><span class="n">Data</span><span class="o">.</span><span class="n">HIGH_RESOLUTION</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">unpack</span><span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="n">HighResolutionMotionData</span><span class="p">),</span> <span class="n">parsed</span><span class="p">)</span>
+            <span class="k">case</span> <span class="n">SensorData</span><span class="o">.</span><span class="n">Data</span><span class="o">.</span><span class="n">CALIBRATION</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">unpack</span><span class="p">(</span><span class="n">CalibrationData</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">parsed</span><span class="p">)</span>
+            <span class="k">case</span> <span class="n">SensorData</span><span class="o">.</span><span class="n">Data</span><span class="o">.</span><span class="n">DASHBOARD</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">unpack</span><span class="p">(</span><span class="n">DashboardData</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">parsed</span><span class="p">)</span>
+            <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unexpected data: </span><span class="si">{</span><span class="n">parsed</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SensorData.encode">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.SensorData.encode">[docs]</a>
+    <span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+        <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="n">pack</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">18</span><span class="p">:</span>
+                <span class="n">data</span> <span class="o">+=</span> <span class="nb">bytes</span><span class="p">(</span><span class="mi">18</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+
+            <span class="n">data_ty</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">match</span> <span class="n">obj</span><span class="p">:</span>
+                <span class="k">case</span> <span class="n">HighResolutionMotionData</span><span class="p">():</span>
+                    <span class="n">data_ty</span> <span class="o">=</span> <span class="n">SensorData</span><span class="o">.</span><span class="n">Data</span><span class="o">.</span><span class="n">HIGH_RESOLUTION</span>
+                <span class="k">case</span> <span class="n">GyroMotionData</span><span class="p">():</span>
+                    <span class="n">data_ty</span> <span class="o">=</span> <span class="n">SensorData</span><span class="o">.</span><span class="n">Data</span><span class="o">.</span><span class="n">COMINO</span>
+                <span class="k">case</span> <span class="n">CalibrationData</span><span class="p">():</span>
+                    <span class="n">data_ty</span> <span class="o">=</span> <span class="n">SensorData</span><span class="o">.</span><span class="n">Data</span><span class="o">.</span><span class="n">CALIBRATION</span>
+                <span class="k">case</span> <span class="n">DashboardData</span><span class="p">():</span>
+                    <span class="n">data_ty</span> <span class="o">=</span> <span class="n">SensorData</span><span class="o">.</span><span class="n">Data</span><span class="o">.</span><span class="n">DASHBOARD</span>
+                <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid data type: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+            <span class="n">data</span> <span class="o">+=</span> <span class="nb">bytes</span><span class="p">([</span><span class="n">data_ty</span><span class="p">,</span> <span class="n">SensorData</span><span class="o">.</span><span class="n">Data</span><span class="o">.</span><span class="n">SPECIAL</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">data</span></div>
+</div>
+
+
+
+<span class="k">def</span> <span class="nf">_cmd_condition</span><span class="p">(</span><span class="n">context</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="n">protocol</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">_root</span><span class="o">.</span><span class="n">protocol</span>
+    <span class="n">command</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">command</span>
+    <span class="k">if</span> <span class="n">command</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">45</span><span class="p">)):</span>  <span class="c1"># 40-44</span>
+        <span class="k">return</span> <span class="n">protocol</span> <span class="o">&lt;=</span> <span class="mi">6</span>
+
+    <span class="k">if</span> <span class="n">command</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">38</span><span class="p">,</span> <span class="mi">47</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">protocol</span> <span class="o">&lt;=</span> <span class="mi">6</span>
+
+    <span class="k">return</span> <span class="kc">True</span>
+
+
+<span class="c1"># @characteristic(&quot;FF21&quot;, &quot;control&quot;)</span>
+<div class="viewcode-block" id="Control">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.Control">[docs]</a>
+<span class="nd">@struct</span><span class="p">(</span><span class="n">kw_only</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Control</span><span class="p">:</span>
+    <span class="k">class</span> <span class="nc">Command</span><span class="p">:</span>
+        <span class="c1"># The following commands need a 0x10 (16) prefix and use their</span>
+        <span class="c1"># command value as parameter (see .change_mode)</span>
+        <span class="n">RESET_MEMORY_TIMER</span> <span class="o">=</span> <span class="mi">41</span>
+        <span class="n">MY_COLOR_DISABLE</span> <span class="o">=</span> <span class="mi">48</span>
+        <span class="n">MY_COLOR_ENABLE</span> <span class="o">=</span> <span class="mi">49</span>
+        <span class="n">STOP_TIMER_SIGNAL</span> <span class="o">=</span> <span class="mi">32</span>
+        <span class="n">MOTION_DISABLE</span> <span class="o">=</span> <span class="mi">64</span>
+        <span class="n">MOTION_ENABLE</span> <span class="o">=</span> <span class="mi">65</span>
+        <span class="n">HIGH_RESOLUTION_MEASUREMENT</span> <span class="o">=</span> <span class="mi">66</span>
+        <span class="n">PRESSURE_DISABLE</span> <span class="o">=</span> <span class="mi">80</span>
+        <span class="n">RAINBOW_ILLUMINATION_DISABLE</span> <span class="o">=</span> <span class="mi">96</span>
+        <span class="n">RAINBOW_ILLUMINATION_ENABLE</span> <span class="o">=</span> <span class="mi">97</span>
+        <span class="n">TRIGGER_RAINBOW_ILLUMINATION</span> <span class="o">=</span> <span class="mi">98</span>
+        <span class="n">CHARGE_ILLUMINATION_DISABLE</span> <span class="o">=</span> <span class="mi">112</span>
+        <span class="n">CHARGE_ILLUMINATION_ENABLE</span> <span class="o">=</span> <span class="mi">113</span>
+        <span class="n">TRIGGER_CONNECTION_ILLUMINATION</span> <span class="o">=</span> <span class="o">-</span><span class="mi">125</span>
+        <span class="n">TRIGGER_SHORT_STUTTER</span> <span class="o">=</span> <span class="mi">33</span>
+        <span class="n">TRIGGER_LONG_STUTTER</span> <span class="o">=</span> <span class="mi">34</span>
+        <span class="n">TRIGGER_SHORT_VISUAL_SIGNAL</span> <span class="o">=</span> <span class="mi">35</span>
+        <span class="n">TRIGGER_LONG_VISUAL_SIGNAL</span> <span class="o">=</span> <span class="mi">36</span>
+        <span class="n">SET_TO_DAILY_CLEAN_MODE</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">SET_TO_PRO_CLEAN_MODE</span> <span class="o">=</span> <span class="mi">7</span>
+        <span class="n">SET_TO_SENSITIVE_MODE</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="n">SET_TO_WHITENING_MODE</span> <span class="o">=</span> <span class="mi">4</span>
+        <span class="n">SET_TO_MASSAGE_MODE</span> <span class="o">=</span> <span class="mi">3</span>
+        <span class="n">SET_TO_TONGUE_CLEAN_MODE</span> <span class="o">=</span> <span class="mi">6</span>
+        <span class="n">SET_TO_DEEP_CLEAN_MODE</span> <span class="o">=</span> <span class="mi">5</span>
+        <span class="n">MOTOR_OFF</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">MODE_SWITCHING_ON</span> <span class="o">=</span> <span class="mi">14</span>
+        <span class="n">MODE_SWITCHING_OFF</span> <span class="o">=</span> <span class="mi">15</span>
+        <span class="c1"># This is a special command that takes a parameter instead of</span>
+        <span class="c1"># using its command value</span>
+        <span class="c1"># SET_MODE = 1</span>
+
+        <span class="c1"># The following four commands need a 0x2E (46) as prefix and use</span>
+        <span class="c1"># their command value as parameter</span>
+        <span class="n">DISABLE_ALL_MOTOR_RAMPING</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">ENABLE_SOFT_START_ONLY_MOTOR_RAMPING</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">ENABLE_LOW_CHARGE_ONLY_MOTOR_RAMPING</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="n">ENABLE_ALL_MOTOR_RAMPING</span> <span class="o">=</span> <span class="mi">3</span>
+
+        <span class="c1"># The last two commands place their command value as prefix</span>
+        <span class="c1"># and need a custom parameter value</span>
+        <span class="n">READ_PARAM</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">READ_DATA</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># see .DataRead</span>
+
+        <span class="c1"># The following commands need a 0x37 (55) prefix value on protocol</span>
+        <span class="c1"># version 6 with its value; otherwise the command is the associated</span>
+        <span class="c1"># value.</span>
+        <span class="n">RTC</span> <span class="o">=</span> <span class="mi">38</span>
+        <span class="n">BRUSH_TIMER</span> <span class="o">=</span> <span class="mi">40</span>
+        <span class="n">BRUSH_MODES</span> <span class="o">=</span> <span class="mi">41</span>
+        <span class="n">QUADRANT_TIMERS</span> <span class="o">=</span> <span class="mi">42</span>
+        <span class="n">TONGUE_TIME</span> <span class="o">=</span> <span class="mi">43</span>
+        <span class="n">PRESSURE_CONFIGURATION</span> <span class="o">=</span> <span class="mi">44</span>
+        <span class="n">MY_COLOR</span> <span class="o">=</span> <span class="mi">47</span>
+
+        <span class="c1"># parameter is always 82</span>
+        <span class="n">FACTORY_RESET</span> <span class="o">=</span> <span class="mi">50</span>
+
+        <span class="c1"># prefix = 51</span>
+        <span class="n">SMART_GUIDE_DISABLE</span> <span class="o">=</span> <span class="mi">80</span>
+        <span class="n">SMART_GUIDE_ENABLE</span> <span class="o">=</span> <span class="mi">81</span>
+
+        <span class="c1">#: This command is used to extend the BLE connection for the amount of</span>
+        <span class="c1">#: seconds given as the parameter. (from 0-255)</span>
+        <span class="n">EXTEND_CONNECTION</span> <span class="o">=</span> <span class="mi">49</span>
+
+        <span class="c1"># prefix = value and parameter = custom</span>
+        <span class="n">CALIBRATION_READ</span> <span class="o">=</span> <span class="mi">4</span>
+        <span class="n">READ_METADATA</span> <span class="o">=</span> <span class="mi">5</span>
+
+        <span class="c1"># prefix = value and parameter = 0</span>
+        <span class="n">DASHBOARD</span> <span class="o">=</span> <span class="mi">48</span>
+
+        <span class="c1"># prefix = value, parameter = custom</span>
+        <span class="n">DEVICE_COLOR_READ</span> <span class="o">=</span> <span class="mi">18</span>
+        <span class="n">NOTIFICATION_CLEAR</span> <span class="o">=</span> <span class="mi">3</span>
+
+<div class="viewcode-block" id="Control.DataRead">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.Control.DataRead">[docs]</a>
+    <span class="k">class</span> <span class="nc">DataRead</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">IntEnum</span><span class="p">):</span>
+        <span class="n">SERVICE_DATA_A</span> <span class="o">=</span> <span class="mi">250</span>
+        <span class="n">SERVICE_DATA_B</span> <span class="o">=</span> <span class="mi">251</span>
+        <span class="n">SOFTWARE_VERSION_SECONDARY_CONTROLLER</span> <span class="o">=</span> <span class="mi">252</span>
+        <span class="n">SOFTWARE_VERSION_MAIN_CONTROLLER</span> <span class="o">=</span> <span class="mi">253</span>
+        <span class="n">TIME_OF_BUILD</span> <span class="o">=</span> <span class="mi">254</span>
+        <span class="n">DATE_OF_BUILD</span> <span class="o">=</span> <span class="mi">255</span></div>
+
+
+<div class="viewcode-block" id="Control.METADATA">
+<a class="viewcode-back" href="../../../API/blesdk.html#oralb.blesdk.model.Control.METADATA">[docs]</a>
+    <span class="k">class</span> <span class="nc">METADATA</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">IntEnum</span><span class="p">):</span>
+        <span class="n">DEVICE_UUID</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">BUSINESS_UNIT</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="n">BLE_PROFILE</span> <span class="o">=</span> <span class="mi">3</span>
+        <span class="n">DEVICE_TYPE</span> <span class="o">=</span> <span class="mi">4</span>
+        <span class="n">DEVICE_PCBA</span> <span class="o">=</span> <span class="mi">5</span>
+        <span class="n">SW_VER_BLUETOOTH_CONTROLLER</span> <span class="o">=</span> <span class="mi">6</span>
+        <span class="n">SW_VER_SYSTEM_CONTROLLER_1</span> <span class="o">=</span> <span class="mi">7</span>
+        <span class="n">SW_VER_SYSTEM_CONTROLLER_2</span> <span class="o">=</span> <span class="mi">8</span>
+        <span class="n">GIT_COMMIT_HASH</span> <span class="o">=</span> <span class="mi">9</span>
+        <span class="n">SONOS_TYPE</span> <span class="o">=</span> <span class="mi">255</span></div>
+
+
+    <span class="n">command</span><span class="p">:</span> <span class="n">uint8</span>
+    <span class="n">parameter</span><span class="p">:</span> <span class="n">uint8</span> <span class="o">//</span> <span class="n">_cmd_condition</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">factory_reset</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Control&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">Control</span><span class="o">.</span><span class="n">Command</span><span class="o">.</span><span class="n">FACTORY_RESET</span><span class="p">,</span> <span class="mi">82</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">extend_connection</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">seconds</span><span class="o">=</span><span class="mh">0xFF</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Control&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">Control</span><span class="o">.</span><span class="n">Command</span><span class="o">.</span><span class="n">EXTEND_CONNECTION</span><span class="p">,</span> <span class="n">seconds</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">read_metadata</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">meta</span><span class="p">:</span> <span class="s2">&quot;Control.METADATA&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Control&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">Control</span><span class="o">.</span><span class="n">Command</span><span class="o">.</span><span class="n">READ_METADATA</span><span class="p">,</span> <span class="n">meta</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">dashboard</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Control&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">Control</span><span class="o">.</span><span class="n">Command</span><span class="o">.</span><span class="n">DASHBOARD</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">change_mode</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Control&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">motor_ramping</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Control&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="mi">46</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">read_data</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="s2">&quot;Control.DataRead&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Control&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">Control</span><span class="o">.</span><span class="n">Command</span><span class="o">.</span><span class="n">READ_DATA</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
+
+</pre></div>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, MatrixEditor
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script src="../../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    </body>
+</html>
