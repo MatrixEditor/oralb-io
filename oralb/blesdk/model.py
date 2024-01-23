@@ -307,16 +307,19 @@ class Button:
 @struct(order=LittleEndian, kw_only=False)
 class BatteryLevel:
     level: uint8
-    seconds_left: uint16 // (ctx._root.protocol >= 6)
-    milli_volts: be + uint16 // (ctx._root.protocol >= 8) = 0
-    milli_amperes: uint16 // (ctx._root.protocol >= 8) = 0
-    temperature: int8 // (ctx._root.protocol >= 8) = 0
-    avail_soc: uint8 // (ctx._root.protocol >= 8) = 0
-    # dischargeCapacityMilliAmpereSeconds
-    dcmas: be + uint32 // (ctx._root.protocol >= 8) = 0
-    # currentConditionRemainingCapacityMilliAmpereSeconds
-    rcmas: be + uint32 // (ctx._root.protocol >= 8) = 0
-    soc_state: uint8 // (ctx._root.protocol >= 8) = 0
+    with ctx._root.protocol >= 6:
+        seconds_left: uint16
+
+    with ctx._root.protocol >= 8:
+        milli_volts: uint16
+        milli_amperes: uint16
+        temperature: int8
+        avail_soc: uint8
+        # dischargeCapacityMilliAmpereSeconds
+        dcmas: uint32
+        # currentConditionRemainingCapacityMilliAmpereSeconds
+        rcmas: uint32
+        soc_state: uint8
 
 
 # default GATT characteristics
