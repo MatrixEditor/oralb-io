@@ -25,6 +25,7 @@ from rich.table import Table
 from rich.live import Live
 from rich.console import Console
 from rich.tree import Tree
+from rich.markup import escape
 
 from bleak import BleakScanner, exc
 from caterpillar.shortcuts import unpack, F
@@ -153,8 +154,8 @@ class BLECommand(Command):
                     continue
 
                 table.add_row(
-                    str(device.address),
-                    str(device.name),
+                    escape(str(device.address)),
+                    escape(str(device.name)),
                     f"[cyan]{adv.rssi}[/]",
                     str(brush),
                 )
@@ -289,6 +290,8 @@ class DeviceManagerCommand(Command):
                 await obclient.connect(address=address)
             with console.status("Pairing..."):
                 await obclient.pair()
+
+            shell.obclient = obclient
                 # If this command throws an error, we have to
                 # reconnect to the device (cleanup connection)
                 # await obclient.write(

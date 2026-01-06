@@ -12,23 +12,26 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
-import cmd
 import shlex
 import traceback
 import asyncio
 
-from oralb.command import COMMAND_TYPES, console
+from prompt_toolkit import PromptSession
+
+from oralb.command import COMMAND_TYPES
 from oralb.exceptions import CLIStop
 
 
 class OralBCmd:
-    prompt = "([bold cyan]oralb[/])> "
+    prompt = "(oralb)> "
 
     def __init__(self) -> None:
         super().__init__()
+        self.session = PromptSession()
         self.commands = [x() for x in COMMAND_TYPES]
         self.parsers = {}
         self.obclient = None
+        self.old_completer = None
         for command in self.commands:
             parser = command.get_parser()
             self.parsers[command.name] = parser
@@ -40,10 +43,20 @@ class OralBCmd:
     def get_names(self):
         return list(dir(self))
 
+    def get_prompt(self):
+        prompt = [("(oralb)", ""), (">", "")]
+        if self.obclient is not None:
+            try:
+                prompt.insert(1, (f"@ {self.obclient.address}", ""))
+            except AttributeError:
+                pass
+
+        return self.prompt
+
     async def cmdloop(self):
         stop = None
         while not stop:
-            line = console.input(self.prompt).strip()
+            line = await self.session.prompt_async(self.get_prompt())
             if not line:
                 continue
 
@@ -58,6 +71,9 @@ class OralBCmd:
             except AttributeError:
                 try:
                     argv = self.parsers[name].parse_args(shlex.split(args))
+                    if not hasattr(argv, "fn"):
+                        self.parsers[name].parse_args(["-h"])
+
                     await argv.fn(self, argv)
                 except KeyError:
                     self.default(line)

@@ -157,7 +157,7 @@ class BLEProfile:
 @metadata(Control.METADATA.DEVICE_UUID)
 @struct
 class DeviceUUID:
-    id: uuid
+    id: Uuid
 
 
 # default models

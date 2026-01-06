@@ -18,7 +18,7 @@ from asyncio import all_tasks
 from bleak import BleakClient
 from caterpillar.shortcuts import unpack, pack
 from caterpillar.fields import FieldStruct
-from caterpillar.abc import hasstruct, getstruct
+from caterpillar.shared import hasstruct, getstruct
 
 from .model import __characteristics__
 from .advertise import ProtocolVersion
